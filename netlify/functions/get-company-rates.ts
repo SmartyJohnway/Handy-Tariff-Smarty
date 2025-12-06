@@ -39,7 +39,7 @@ export const handler: Handler = async (event: HandlerEvent): Promise<HandlerResp
             };
         }
 
-        const normalizedDoc = normalizeFind(docJson) as NormalizedFRDoc | null;
+        const normalizedDoc = normalizeFRDoc(docJson) as NormalizedFRDoc | null;
         if (!normalizedDoc) {
             return {
                 statusCode: 404,
