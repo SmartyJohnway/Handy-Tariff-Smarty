@@ -18,7 +18,6 @@
   },
   "references": [{ "path": "./tsconfig.node.json" }],
   "include": [
-    "src",
-    "netlify/functions/**/*.ts"
+    "src"
   ]
 }
