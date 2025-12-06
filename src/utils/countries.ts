@@ -1,4 +1,4 @@
-import { fetchJson } from '../lib/api';
+import { fetchJson } from '@/lib/api';
 
 export interface CountryOption {
   name: string; // e.g., "Japan - JP - JPN"
