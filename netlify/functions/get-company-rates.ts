@@ -1,6 +1,6 @@
 import type { Handler, HandlerEvent, HandlerResponse } from "@netlify/functions";
 import { parseCompanyRatesFromHtml, detectFrSpecialCase } from "@/utils/fr-adcvd-parser";
-import { normalizeFind, NormalizedFRDoc } from "@/lib/frNormalize";
+import { normalizeResults, normalizeFRDoc, NormalizedFRDoc } from '@/lib/frNormalize';
 import { getFunctionsBaseUrl } from "./utils/netlify";
 
 const cache = new Map<string, { data: any; timestamp: number }>();

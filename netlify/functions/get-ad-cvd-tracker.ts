@@ -1,6 +1,6 @@
 import type { Handler, HandlerEvent, HandlerResponse } from "@netlify/functions";
-import type { UnifiedTariff, InvestigationTag } from "../../src/models/unified";
-import { normalizeResults, normalizeFRDoc, NormalizedFRDoc } from "../../src/lib/frNormalize";
+import type { UnifiedTariff, InvestigationTag } from "@/models/unified";
+import { normalizeResults, normalizeFRDoc, NormalizedFRDoc } from "@/lib/frNormalize";
 import { getFunctionsBaseUrl } from "./utils/netlify";
 
 const DEFAULT_FETCH_TIMEOUT_MS = 12_000;
