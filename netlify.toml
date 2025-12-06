@@ -1,0 +1,41 @@
+# Netlify configuration for the Handy-Tariff-Smarty (Vite) project
+
+[build]
+  # base = "Handy-Tariff-Smarty"
+  # The build command to run. This will execute the 'build' script
+  # in the package.json of this directory.
+  command = "npm run build"
+  # The directory to publish (relative to this file)
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[dev]
+  # Force Netlify Dev to use the local workspace scripts (avoid workspace auto-detection issues on Windows)
+  command = "npm run dev"
+  framework = "#custom"
+  # Tell netlify dev to proxy to the Vite server running on this port
+  targetPort = 5174
+  # Explicitly declare the framework dev server port to avoid rewriting assets to index.html
+  frameworkPort = 5174
+  # The port for the Netlify dev server itself
+  port = 8888
+
+[functions]
+  # base = "Handy-Tariff-Smarty"
+  # Functions directory is relative to this file
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  node_bundler_config = { "format" = "esm" }
+  
+# Redirects for API and SPA routing
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -1,0 +1,1032 @@
+{
+  "metadata": {
+    "title": "Harmonized Tariff Schedule of the United States",
+    "source_url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=finalCopy"
+  },
+  "about_hts": {
+    "title": "About the HTS",
+    "description": "Table of Contents, Preface, Change Record, China Tariffs, etc.",
+    "items": [
+      {
+        "label": "Cover",
+        "filename": "Cover",
+        "description": "",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Cover"
+      },
+      {
+        "label": "Change Record",
+        "filename": "Change Record",
+        "description": "The record of legal and statistical changes in this edition of the Harmonized Tariff Schedule",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Change%20Record"
+      },
+      {
+        "label": "Preface",
+        "filename": "Preface",
+        "description": "",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Preface"
+      },
+      {
+        "label": "Table of Contents",
+        "filename": "Table of Contents",
+        "description": "",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Table%20of%20Contents"
+      },
+      {
+        "label": "Notice to Exporters",
+        "filename": "Notice to Exporters",
+        "description": "",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Notice%20to%20Exporters"
+      },
+      {
+        "label": "China Tariffs",
+        "filename": "China Tariffs",
+        "description": "",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=China%20Tariffs"
+      }
+    ]
+  },
+  "general_notes": {
+    "title": "General Notes",
+    "description": "General Notes; General Rules of Interpretation; General Statistical Notes",
+    "items": [
+      {
+        "label": "General Notes",
+        "filename": "General Notes",
+        "description": "Full Document",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Notes"
+      },
+      {
+        "label": "General Rules of Interpretation",
+        "filename": "General Rules of Interpretation",
+        "description": "General Rules of Interpretation",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Rules%20of%20Interpretation"
+      },
+      {
+        "label": "General Note 1",
+        "filename": "General Note 1",
+        "description": "Tariff Treatment of Imported Goods and of Vessel Equipments, Parts and Repairs",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%201"
+      },
+      {
+        "label": "General Note 2",
+        "filename": "General Note 2",
+        "description": "Customs Territory of the United States",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%202"
+      },
+      {
+        "label": "General Note 3",
+        "filename": "General Note 3",
+        "description": "Rates of Duty",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%203"
+      },
+      {
+        "label": "General Note 4",
+        "filename": "General Note 4",
+        "description": "Generalized System of Preferences (GSP)",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%204"
+      },
+      {
+        "label": "General Note 5",
+        "filename": "General Note 5",
+        "description": "Automotive Products Trade Act",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%205"
+      },
+      {
+        "label": "General Note 6",
+        "filename": "General Note 6",
+        "description": "Agreement on Trade in Civil Aircraft",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%206"
+      },
+      {
+        "label": "General Note 7",
+        "filename": "General Note 7",
+        "description": "Caribbean Basin Economic Recovery Act (CBERA)",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%207"
+      },
+      {
+        "label": "General Note 8",
+        "filename": "General Note 8",
+        "description": "United States-Israel Free Trade Area Implementation Act of 1985",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%208"
+      },
+      {
+        "label": "General Note 9",
+        "filename": "General Note 9",
+        "description": "United States-Canada Free-Trade Agreement-Suspended",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%209"
+      },
+      {
+        "label": "General Note 10",
+        "filename": "General Note 10",
+        "description": "Products of the Freely Associated States",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2010"
+      },
+      {
+        "label": "General Note 11",
+        "filename": "General Note 11",
+        "description": "United States-Mexico-Canada Agreement",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2011"
+      },
+      {
+        "label": "General Note 12",
+        "filename": "General Note 12",
+        "description": "North American Free Trade Agreement-Deleted",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2012"
+      },
+      {
+        "label": "General Note 13",
+        "filename": "General Note 13",
+        "description": "Pharmaceutical products and related appendix",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2013"
+      },
+      {
+        "label": "General Note 14",
+        "filename": "General Note 14",
+        "description": "Intermediate chemicals for dyes and related appendix",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2014"
+      },
+      {
+        "label": "General Note 15",
+        "filename": "General Note 15",
+        "description": "Exclusions from tariff rate quotas",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2015"
+      },
+      {
+        "label": "General Note 16",
+        "filename": "General Note 16",
+        "description": "African Growth and Opportunity Act (AGOA)",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2016"
+      },
+      {
+        "label": "General Note 17",
+        "filename": "General Note 17",
+        "description": "United States-Caribbean Basin Trade Partnership Act of 2000 (CBPTA)",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2017"
+      },
+      {
+        "label": "General Note 18",
+        "filename": "General Note 18",
+        "description": "United States-Jordan Free Trade Area Implementation Act",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2018"
+      },
+      {
+        "label": "General Note 25",
+        "filename": "General Note 25",
+        "description": "United States-Singapore Free Trade Agreement",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2025"
+      },
+      {
+        "label": "General Note 26",
+        "filename": "General Note 26",
+        "description": "United States-Chile Free Trade Agreement",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2026"
+      },
+      {
+        "label": "General Note 27",
+        "filename": "General Note 27",
+        "description": "United States-Morocco Free Trade Agreement",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2027"
+      },
+      {
+        "label": "General Note 28",
+        "filename": "General Note 28",
+        "description": "United States-Australia Free Trade Agreement",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2028"
+      },
+      {
+        "label": "General Note 29",
+        "filename": "General Note 29",
+        "description": "Dominican Republic-Central America-United States Free Trade Agreement (DR-CAFTA)",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2029"
+      },
+      {
+        "label": "General Note 30",
+        "filename": "General Note 30",
+        "description": "United States-Bahrain Free Trade Agreement",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2030"
+      },
+      {
+        "label": "General Note 31",
+        "filename": "General Note 31",
+        "description": "United States-Oman Free Trade Agreement",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2031"
+      },
+      {
+        "label": "General Note 32",
+        "filename": "General Note 32",
+        "description": "United States-Peru Trade Promotion Agreement",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2032"
+      },
+      {
+        "label": "General Note 33",
+        "filename": "General Note 33",
+        "description": "United States-Korea Free Trade Agreement",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2033"
+      },
+      {
+        "label": "General Note 34",
+        "filename": "General Note 34",
+        "description": "United States-Colombia Trade Promotion Agreement",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2034"
+      },
+      {
+        "label": "General Note 35",
+        "filename": "General Note 35",
+        "description": "United States-Panama Trade Promotion Agreement",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2035"
+      },
+      {
+        "label": "General Note 36",
+        "filename": "General Note 36",
+        "description": "Trade Agreement between the United States and Japan",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Note%2036"
+      },
+      {
+        "label": "General Statistical Notes",
+        "filename": "General Statistical Notes",
+        "description": "General Statistical Notes",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=General%20Statistical%20Notes"
+      }
+    ]
+  },
+  "tariff_sections": [
+    {
+      "section_label": "Section I",
+      "section_title": "Live Animals; Animal Products",
+      "section_range": "Chapters 1-5",
+      "chapters": [
+        {
+          "label": "Chapter 1",
+          "description": "Live animals",
+          "filename": "Chapter 1",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%201"
+        },
+        {
+          "label": "Chapter 2",
+          "description": "Meat and edible meat offal",
+          "filename": "Chapter 2",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%202"
+        },
+        {
+          "label": "Chapter 3",
+          "description": "Fish and crustaceans, molluscs and other aquatic invertebrates",
+          "filename": "Chapter 3",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%203"
+        },
+        {
+          "label": "Chapter 4",
+          "description": "Dairy produce; birds eggs; natural honey; edible products of animal origin, not elsewhere specified or included",
+          "filename": "Chapter 4",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%204"
+        },
+        {
+          "label": "Chapter 5",
+          "description": "Products of animal origin, not elsewhere specified or included",
+          "filename": "Chapter 5",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%205"
+        }
+      ]
+    },
+    {
+      "section_label": "Section II",
+      "section_title": "Vegetable Products",
+      "section_range": "Chapters 6-14",
+      "chapters": [
+        {
+          "label": "Chapter 6",
+          "description": "Live trees and other plants; bulbs, roots and the like; cut flowers and ornamental foliage",
+          "filename": "Chapter 6",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%206"
+        },
+        {
+          "label": "Chapter 7",
+          "description": "Edible vegetables and certain roots and tubers",
+          "filename": "Chapter 7",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%207"
+        },
+        {
+          "label": "Chapter 8",
+          "description": "Edible fruit and nuts; peel of citrus fruit or melons",
+          "filename": "Chapter 8",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%208"
+        },
+        {
+          "label": "Chapter 9",
+          "description": "Coffee, tea, maté and spices",
+          "filename": "Chapter 9",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%209"
+        },
+        {
+          "label": "Chapter 10",
+          "description": "Cereals",
+          "filename": "Chapter 10",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2010"
+        },
+        {
+          "label": "Chapter 11",
+          "description": "Products of the milling industry; malt; starches; inulin; wheat gluten",
+          "filename": "Chapter 11",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2011"
+        },
+        {
+          "label": "Chapter 12",
+          "description": "Oil seeds and oleaginous fruits; miscellaneous grains, seeds and fruits; industrial or medicinal plants; straw and fodder",
+          "filename": "Chapter 12",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2012"
+        },
+        {
+          "label": "Chapter 13",
+          "description": "Lac; gums, resins and other vegetable saps and extracts",
+          "filename": "Chapter 13",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2013"
+        },
+        {
+          "label": "Chapter 14",
+          "description": "Vegetable plaiting materials; vegetable products not elsewhere specified or included",
+          "filename": "Chapter 14",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2014"
+        }
+      ]
+    },
+    {
+      "section_label": "Section III",
+      "section_title": "Animal or Vegetable Fats and Oils and Their Cleavage Products; Prepared Edible Fats; Animal or Vegetable Waxes",
+      "section_range": "Chapter 15",
+      "chapters": [
+        {
+          "label": "Chapter 15",
+          "description": "Animal or vegetable fats and oils and their cleavage products prepared edible fats; animal or vegetable waxes",
+          "filename": "Chapter 15",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2015"
+        }
+      ]
+    },
+    {
+      "section_label": "Section IV",
+      "section_title": "Prepared Foodstuffs; Beverages, Spirits, and Vinegar; Tobacco and Manufactured Tobacco Substitutes",
+      "section_range": "Chapters 16-24",
+      "chapters": [
+        {
+          "label": "Chapter 16",
+          "description": "Preparations of meat, of fish or of crustaceans, molluscs or other aquatic invertebrates",
+          "filename": "Chapter 16",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2016"
+        },
+        {
+          "label": "Chapter 17",
+          "description": "Sugars and sugar confectionery",
+          "filename": "Chapter 17",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2017"
+        },
+        {
+          "label": "Chapter 18",
+          "description": "Cocoa and cocoa preparations",
+          "filename": "Chapter 18",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2018"
+        },
+        {
+          "label": "Chapter 19",
+          "description": "Preparations of cereals, flour, starch or milk; bakers' wares",
+          "filename": "Chapter 19",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2019"
+        },
+        {
+          "label": "Chapter 20",
+          "description": "Preparations of vegetables, fruit, nuts or other parts of plants",
+          "filename": "Chapter 20",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2020"
+        },
+        {
+          "label": "Chapter 21",
+          "description": "Miscellaneous edible preparations",
+          "filename": "Chapter 21",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2021"
+        },
+        {
+          "label": "Chapter 22",
+          "description": "Beverages, spirits and vinegar",
+          "filename": "Chapter 22",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2022"
+        },
+        {
+          "label": "Chapter 23",
+          "description": "Residues and waste from the food industries; prepared animal feed",
+          "filename": "Chapter 23",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2023"
+        },
+        {
+          "label": "Chapter 24",
+          "description": "Tobacco and manufactured tobacco substitutes",
+          "filename": "Chapter 24",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2024"
+        }
+      ]
+    },
+    {
+      "section_label": "Section V",
+      "section_title": "Mineral Products",
+      "section_range": "Chapters 25-27",
+      "chapters": [
+        {
+          "label": "Chapter 25",
+          "description": "Salt; sulfur; earths and stone; plastering materials, lime and cement",
+          "filename": "Chapter 25",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2025"
+        },
+        {
+          "label": "Chapter 26",
+          "description": "Ores, slag and ash",
+          "filename": "Chapter 26",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2026"
+        },
+        {
+          "label": "Chapter 27",
+          "description": "Mineral fuels, mineral oils and products of their distillation; bituminous substances; mineral waxes",
+          "filename": "Chapter 27",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2027"
+        }
+      ]
+    },
+    {
+      "section_label": "Section VI",
+      "section_title": "Products of the Chemical or Allied Industries",
+      "section_range": "Chapters 28-38",
+      "chapters": [
+        {
+          "label": "Chapter 28",
+          "description": "Inorganic chemicals; organic or inorganic compounds of precious metals, of rare-earth metals, of radioactive elements or of isotopes",
+          "filename": "Chapter 28",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2028"
+        },
+        {
+          "label": "Chapter 29",
+          "description": "Organic chemicals",
+          "filename": "Chapter 29",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2029"
+        },
+        {
+          "label": "Chapter 30",
+          "description": "Pharmaceutical products",
+          "filename": "Chapter 30",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2030"
+        },
+        {
+          "label": "Chapter 31",
+          "description": "Fertilizers",
+          "filename": "Chapter 31",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2031"
+        },
+        {
+          "label": "Chapter 32",
+          "description": "Tanning or dyeing extracts; dyes, pigments, paints, varnishes, putty and mastics",
+          "filename": "Chapter 32",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2032"
+        },
+        {
+          "label": "Chapter 33",
+          "description": "Essential oils and resinoids; perfumery, cosmetic or toilet preparations",
+          "filename": "Chapter 33",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2033"
+        },
+        {
+          "label": "Chapter 34",
+          "description": "Soap, organic surface-active agents, washing preparations, lubricating preparations, artificial waxes, prepared waxes, polishing or scouring preparations, candles and similar articles, modeling pastes, \"dental waxes\" and dental preparations with a basis of plaster",
+          "filename": "Chapter 34",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2034"
+        },
+        {
+          "label": "Chapter 35",
+          "description": "Albuminoidal substances; modified starches; glues; enzymes",
+          "filename": "Chapter 35",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2035"
+        },
+        {
+          "label": "Chapter 36",
+          "description": "Explosives; pyrotechnic products; matches; pyrophoric alloys; certain combustible preparations",
+          "filename": "Chapter 36",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2036"
+        },
+        {
+          "label": "Chapter 37",
+          "description": "Photographic or cinematographic goods",
+          "filename": "Chapter 37",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2037"
+        },
+        {
+          "label": "Chapter 38",
+          "description": "Miscellaneous chemical products",
+          "filename": "Chapter 38",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2038"
+        }
+      ]
+    },
+    {
+      "section_label": "Section VII",
+      "section_title": "Plastics and Articles Thereof Rubber and Articles Thereof",
+      "section_range": "Chapters 39-40",
+      "chapters": [
+        {
+          "label": "Chapter 39",
+          "description": "Plastics and articles thereof",
+          "filename": "Chapter 39",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2039"
+        },
+        {
+          "label": "Chapter 40",
+          "description": "Rubber and articles thereof",
+          "filename": "Chapter 40",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2040"
+        }
+      ]
+    },
+    {
+      "section_label": "Section VIII",
+      "section_title": "Raw Hides and Skins, Leather, Furskins and Articles Thereof; Saddlery and Harness; Travel Goods, Handbags and Similar Containers; Articles of Animal Gut (Other Than Silkworm Gut)",
+      "section_range": "Chapters 41-43",
+      "chapters": [
+        {
+          "label": "Chapter 41",
+          "description": "Raw hides and skins (other than furskins) and leather",
+          "filename": "Chapter 41",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2041"
+        },
+        {
+          "label": "Chapter 42",
+          "description": "Articles of leather; saddlery and harness; travel goods, handbags and similar containers; articles of animal gut (other than silkworm gut)",
+          "filename": "Chapter 42",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2042"
+        },
+        {
+          "label": "Chapter 43",
+          "description": "Furskins and artificial fur; manufactures thereof",
+          "filename": "Chapter 43",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2043"
+        }
+      ]
+    },
+    {
+      "section_label": "Section IX",
+      "section_title": "Wood and Articles of Wood; Wood Charcoal; Cork and Articles of Cork; Manufacturers of Straw,of Esparto or of Other Plaiting Materials; Basketware and Wickerwork",
+      "section_range": "Chapters 44-46",
+      "chapters": [
+        {
+          "label": "Chapter 44",
+          "description": "Wood and articles of wood; wood charcoal",
+          "filename": "Chapter 44",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2044"
+        },
+        {
+          "label": "Chapter 45",
+          "description": "Cork and articles of cork",
+          "filename": "Chapter 45",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2045"
+        },
+        {
+          "label": "Chapter 46",
+          "description": "Manufactures of straw, of esparto or of other plaiting materials; basketware and wickerwork",
+          "filename": "Chapter 46",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2046"
+        }
+      ]
+    },
+    {
+      "section_label": "Section X",
+      "section_title": "Pulp of Wood or of Other Fibrous Cellulosic Material; Waste and Scrap of Paper or Paperboard; Paper and Paperboard and Articles Thereof",
+      "section_range": "Chapters 47-49",
+      "chapters": [
+        {
+          "label": "Chapter 47",
+          "description": "Pulp of wood or of other fibrous cellulosic material; waste and scrap of paper or paperboard",
+          "filename": "Chapter 47",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2047"
+        },
+        {
+          "label": "Chapter 48",
+          "description": "Paper and paperboard; articles of paper pulp, of paper or of paperboard",
+          "filename": "Chapter 48",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2048"
+        },
+        {
+          "label": "Chapter 49",
+          "description": "Printed books, newspapers, pictures and other products of the printing industry; manuscripts, typescripts and plans",
+          "filename": "Chapter 49",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2049"
+        }
+      ]
+    },
+    {
+      "section_label": "Section XI",
+      "section_title": "Textile and Textile Articles",
+      "section_range": "Chapters 50-63",
+      "chapters": [
+        {
+          "label": "Chapter 50",
+          "description": "Silk",
+          "filename": "Chapter 50",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2050"
+        },
+        {
+          "label": "Chapter 51",
+          "description": "Wool, fine or coarse animal hair; horsehair yarn and woven fabric",
+          "filename": "Chapter 51",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2051"
+        },
+        {
+          "label": "Chapter 52",
+          "description": "Cotton",
+          "filename": "Chapter 52",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2052"
+        },
+        {
+          "label": "Chapter 53",
+          "description": "Other vegetable textile fibers; paper yarn and woven fabric of paper yarn",
+          "filename": "Chapter 53",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2053"
+        },
+        {
+          "label": "Chapter 54",
+          "description": "Man-made filaments",
+          "filename": "Chapter 54",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2054"
+        },
+        {
+          "label": "Chapter 55",
+          "description": "Man-made staple fibers",
+          "filename": "Chapter 55",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2055"
+        },
+        {
+          "label": "Chapter 56",
+          "description": "Wadding, felt and nonwovens; special yarns, twine, cordage, ropes and cables and articles thereof",
+          "filename": "Chapter 56",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2056"
+        },
+        {
+          "label": "Chapter 57",
+          "description": "Carpets and other textile floor coverings",
+          "filename": "Chapter 57",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2057"
+        },
+        {
+          "label": "Chapter 58",
+          "description": "Special woven fabrics; tufted textile fabrics; lace, tapestries; trimmings; embroidery",
+          "filename": "Chapter 58",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2058"
+        },
+        {
+          "label": "Chapter 59",
+          "description": "Impregnated, coated, covered or laminated textile fabrics; textile articles of a kind suitable for industrial use",
+          "filename": "Chapter 59",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2059"
+        },
+        {
+          "label": "Chapter 60",
+          "description": "Knitted or crocheted fabrics",
+          "filename": "Chapter 60",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2060"
+        },
+        {
+          "label": "Chapter 61",
+          "description": "Articles of apparel and clothing accessories, knitted or crocheted",
+          "filename": "Chapter 61",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2061"
+        },
+        {
+          "label": "Chapter 62",
+          "description": "Articles of apparel and clothing accessories, not knitted or crocheted",
+          "filename": "Chapter 62",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2062"
+        },
+        {
+          "label": "Chapter 63",
+          "description": "Other made up textile articles; sets; worn clothing and worn textile articles; rags",
+          "filename": "Chapter 63",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2063"
+        }
+      ]
+    },
+    {
+      "section_label": "Section XII",
+      "section_title": "Footwear, Headgear, Umbrellas, Sun Umbrellas, Walking Sticks, Seatsticks, Whips, Riding-Crops and Parts Thereof; Prepared Feathers and Articles Made Therewith; Artificial Flowers; Articles of Human Hair",
+      "section_range": "Chapters 64-67",
+      "chapters": [
+        {
+          "label": "Chapter 64",
+          "description": "Footwear, gaiters and the like; parts of such articles",
+          "filename": "Chapter 64",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2064"
+        },
+        {
+          "label": "Chapter 65",
+          "description": "Headgear and parts thereof",
+          "filename": "Chapter 65",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2065"
+        },
+        {
+          "label": "Chapter 66",
+          "description": "Umbrellas, sun umbrellas, walking sticks, seatsticks, whips, riding-crops and parts thereof",
+          "filename": "Chapter 66",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2066"
+        },
+        {
+          "label": "Chapter 67",
+          "description": "Prepared feathers and down and articles made of feathers or of down; artificial flowers; articles of human hair",
+          "filename": "Chapter 67",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2067"
+        }
+      ]
+    },
+    {
+      "section_label": "Section XIII",
+      "section_title": "Articles of Stone, Plaster, Cement, Asbestos, Mica or Similar Materials; Ceramic Products; Glass and Glassware",
+      "section_range": "Chapters 68-70",
+      "chapters": [
+        {
+          "label": "Chapter 68",
+          "description": "Articles of stone, plaster, cement, asbestos, mica or similar materials",
+          "filename": "Chapter 68",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2068"
+        },
+        {
+          "label": "Chapter 69",
+          "description": "Ceramic products",
+          "filename": "Chapter 69",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2069"
+        },
+        {
+          "label": "Chapter 70",
+          "description": "Glass and glassware",
+          "filename": "Chapter 70",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2070"
+        }
+      ]
+    },
+    {
+      "section_label": "Section XIV",
+      "section_title": "Natural or Cultured Pearls, Precious or Semiprecious Stones, Precious Metals, Metals Clad With Precious Metal, and Articles Thereof; Imitation Jewelry; Coin",
+      "section_range": "Chapter 71",
+      "chapters": [
+        {
+          "label": "Chapter 71",
+          "description": "Natural or cultured pearls, precious or semi-precious stones,precious metals, metals clad with precious metal and articles thereof; imitation jewelry; coin",
+          "filename": "Chapter 71",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2071"
+        }
+      ]
+    },
+    {
+      "section_label": "Section XV",
+      "section_title": "Base Metals and Articles of Base Metal",
+      "section_range": "Chapters 72-83",
+      "chapters": [
+        {
+          "label": "Chapter 72",
+          "description": "Iron and steel",
+          "filename": "Chapter 72",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2072"
+        },
+        {
+          "label": "Chapter 73",
+          "description": "Articles of iron or steel",
+          "filename": "Chapter 73",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2073"
+        },
+        {
+          "label": "Chapter 74",
+          "description": "Copper and articles thereof",
+          "filename": "Chapter 74",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2074"
+        },
+        {
+          "label": "Chapter 75",
+          "description": "Nickel and articles thereof",
+          "filename": "Chapter 75",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2075"
+        },
+        {
+          "label": "Chapter 76",
+          "description": "Aluminum and articles thereof",
+          "filename": "Chapter 76",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2076"
+        },
+        {
+          "label": "Chapter 77",
+          "description": "(Reserved for possible future use)",
+          "filename": "Chapter 77",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2077"
+        },
+        {
+          "label": "Chapter 78",
+          "description": "Lead and articles thereof",
+          "filename": "Chapter 78",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2078"
+        },
+        {
+          "label": "Chapter 79",
+          "description": "Zinc and articles thereof",
+          "filename": "Chapter 79",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2079"
+        },
+        {
+          "label": "Chapter 80",
+          "description": "Tin and articles thereof",
+          "filename": "Chapter 80",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2080"
+        },
+        {
+          "label": "Chapter 81",
+          "description": "Other base metals; cermets; articles thereof",
+          "filename": "Chapter 81",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2081"
+        },
+        {
+          "label": "Chapter 82",
+          "description": "Tools, implements, cutlery, spoons and forks, of base metal; parts thereof of base metal",
+          "filename": "Chapter 82",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2082"
+        },
+        {
+          "label": "Chapter 83",
+          "description": "Miscellaneous articles of base metal",
+          "filename": "Chapter 83",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2083"
+        }
+      ]
+    },
+    {
+      "section_label": "Section XVI",
+      "section_title": "Machinery and Mechanical Appliances; Electrical Equipment; Parts Thereof; Sound Recorders and Reproducers, Television Image and Sound Recorders and Reproducers, and Parts and Accessories of Such Articles",
+      "section_range": "Chapters 84-85",
+      "chapters": [
+        {
+          "label": "Chapter 84",
+          "description": "Nuclear reactors, boilers, machinery and mechanical appliances; parts thereof",
+          "filename": "Chapter 84",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2084"
+        },
+        {
+          "label": "Chapter 85",
+          "description": "Electrical machinery and equipment and parts thereof; sound recorders and reproducers, television image and sound recorders and reproducers, and parts and accessories of such articles",
+          "filename": "Chapter 85",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2085"
+        }
+      ]
+    },
+    {
+      "section_label": "Section XVII",
+      "section_title": "Vehicles, Aircraft, Vessels and Associated Transport Equipment",
+      "section_range": "Chapters 86-89",
+      "chapters": [
+        {
+          "label": "Chapter 86",
+          "description": "Railway or tramway locomotives, rolling-stock and parts thereof; railway or tramway track fixtures and fittings and parts thereof; mechanical (including electro-mechanical) traffic signalling equipment of all kinds",
+          "filename": "Chapter 86",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2086"
+        },
+        {
+          "label": "Chapter 87",
+          "description": "Vehicles other than railway or tramway rolling stock, and parts and accessories thereof",
+          "filename": "Chapter 87",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2087"
+        },
+        {
+          "label": "Chapter 88",
+          "description": "Aircraft, spacecraft, and parts thereof",
+          "filename": "Chapter 88",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2088"
+        },
+        {
+          "label": "Chapter 89",
+          "description": "Ships, boats and floating structures",
+          "filename": "Chapter 89",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2089"
+        }
+      ]
+    },
+    {
+      "section_label": "Section XVIII",
+      "section_title": "Optical, Photographic, Cinematographic, Measuring, Checking, Precision, Medical or Surgical Instruments and Apparatus; Clocks and Watches; Musical Instruments; Parts and Accessories Thereof",
+      "section_range": "Chapters 90-92",
+      "chapters": [
+        {
+          "label": "Chapter 90",
+          "description": "Optical, photographic, cinematographic, measuring, checking, precision, medical or surgical instruments and apparatus; parts and accessories thereof",
+          "filename": "Chapter 90",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2090"
+        },
+        {
+          "label": "Chapter 91",
+          "description": "Clocks and watches and parts thereof",
+          "filename": "Chapter 91",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2091"
+        },
+        {
+          "label": "Chapter 92",
+          "description": "Musical instruments; parts and accessories of such articles",
+          "filename": "Chapter 92",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2092"
+        }
+      ]
+    },
+    {
+      "section_label": "Section XIX",
+      "section_title": "Arms and Ammunition; Parts and Accessories Thereof",
+      "section_range": "Chapter 93",
+      "chapters": [
+        {
+          "label": "Chapter 93",
+          "description": "Arms and ammunition; parts and accessories thereof",
+          "filename": "Chapter 93",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2093"
+        }
+      ]
+    },
+    {
+      "section_label": "Section XX",
+      "section_title": "Miscellaneous Manufactured Articles",
+      "section_range": "Chapters 94-96",
+      "chapters": [
+        {
+          "label": "Chapter 94",
+          "description": "Furniture; bedding, mattresses, mattress supports, cushions and similar stuffed furnishings; lamps and lighting fittings, not elsewhere specified or included; illuminated sign illuminated nameplates and the like; prefabricated buildings",
+          "filename": "Chapter 94",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2094"
+        },
+        {
+          "label": "Chapter 95",
+          "description": "Toys, games and sports requisites; parts and accessories thereof",
+          "filename": "Chapter 95",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2095"
+        },
+        {
+          "label": "Chapter 96",
+          "description": "Miscellaneous manufactured articles",
+          "filename": "Chapter 96",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2096"
+        }
+      ]
+    },
+    {
+      "section_label": "Section XXI",
+      "section_title": "Works of Art, Collectors' Pieces and Antiques",
+      "section_range": "Chapter 97",
+      "chapters": [
+        {
+          "label": "Chapter 97",
+          "description": "Works of art, collectors' pieces and antiques",
+          "filename": "Chapter 97",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2097"
+        }
+      ]
+    },
+    {
+      "section_label": "Section XXII",
+      "section_title": "Special Classification Provisions; Temporary Legislation; Temporary Modifications Proclaimed pursuant to Trade Agreements Legislation; Additional Import Restrictions Proclaimed Pursuant to Section 22 of the Agricultural Adjustment Act, As Amended",
+      "section_range": "Chapter 98-99",
+      "chapters": [
+        {
+          "label": "Chapter 98",
+          "description": "Special classification provisions",
+          "filename": "Chapter 98",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2098"
+        },
+        {
+          "label": "Chapter 99",
+          "description": "Temporary legislation; temporary modifications proclaimed pursuant to trade agreements legislation; additional import restrictions proclaimed pursuant to section 22 of the Agricultural Adjustment Act, as amended",
+          "filename": "Chapter 99",
+          "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chapter%2099"
+        }
+      ]
+    }
+  ],
+  "appendices": {
+    "title": "Appendices",
+    "description": "Chemical Appendices, Pharmaceutical Appendix, Statistical Annexes",
+    "items": [
+      {
+        "label": "Chemical Appendix to the Tariff Schedule",
+        "filename": "Chemical Appendix",
+        "description": "",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Chemical%20Appendix"
+      },
+      {
+        "label": "Pharmaceutical Appendix to the Tariff Schedule",
+        "filename": "Pharmaceutical Appendix",
+        "description": "",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Pharmaceutical%20Appendix"
+      },
+      {
+        "label": "Intermediate Chemicals for Dyes Appendix to the Tariff Schedule",
+        "filename": "Intermediate Chemicals for Dyes",
+        "description": "",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Intermediate%20Chemicals%20for%20Dyes"
+      },
+      {
+        "label": "Statistical Annexes",
+        "filename": "Statistical Annexes",
+        "description": "Annex A - Schedule C, Classification of Country and Territory Designations for U.S. Import Statistics<br>Annex B - International Standard Country Codes<br>Annex C - Schedule D, Customs District and Port Codes",
+        "url": "https://hts.usitc.gov/reststop/file?release=currentRelease&filename=Statistical%20Annexes"
+      }
+    ]
+  }
+}
