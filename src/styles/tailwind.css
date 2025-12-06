@@ -1,0 +1,402 @@
+
+/* stylelint-disable at-rule-no-unknown */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
+
+/* ==========================================================================
+   OKLCH Theming (raw triplets) + Vibrant Charts (RGB triplets)
+   - Default + Ocean + Jade + Plum (each has Light/Dark)
+   - Surfaces in each theme now visibly shift hue/tint for background/card/popover
+   - Charts are high-contrast, vibrant, and theme-tuned (rgb(var(--chart-n)))
+   - Use tokens with: background: oklch(var(--background)); color: oklch(var(--foreground));
+   ========================================================================== */
+
+@layer base {
+  :root {
+    /* === Default — Light (neutral paper) ================================== */
+    --background: 0.99 0 0;               /* neutral paper */
+    --foreground: 0.17 0.006 260;         /* near-black blue-gray */
+
+    --card: 0.995 0.003 250;               /* slightly off-white card for depth */
+    --card-foreground: 0.20 0.010 258;
+
+    --popover: 0.995 0.003 250;
+    --popover-foreground: 0.20 0.010 258;
+
+    --primary: 0.56 0.140 255;             /* slate-blue brand */
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.96 0.012 250;
+    --secondary-foreground: 0.22 0.010 255;
+
+    --muted: 0.96 0.012 250;
+    --muted-foreground: 0.55 0.030 255;
+
+    --accent: 0.965 0.010 250;
+    --accent-foreground: 0.22 0.010 255;
+
+    --destructive: 0.60 0.180 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.90 0.008 250;
+    --input:  0.90 0.008 250;
+    --ring:   0.64 0.140 255;
+
+    --radius: 0.75rem;
+
+    /* Charts — Default (Light) — vivid & distinct */
+    --chart-1: 29 78 216;   /* blue-700 */
+    --chart-2: 34 197 94;   /* green-500 */
+    --chart-3: 234 88 12;   /* orange-600 */
+    --chart-4: 147 51 234;  /* purple-600 */
+    --chart-5: 14 165 233;  /* sky-500 */
+    --chart-6: 244 63 94;   /* rose-500 */
+    --chart-7: 245 158 11;  /* amber-500 */
+    --chart-8: 20 184 166;  /* teal-500 */
+    --chart-9: 99 102 241;  /* indigo-500 */
+    --chart-10: 236 72 153; /* pink-500 */
+    --chart-grid: 203 213 225; /* slate-300 */
+  }
+
+  .dark {
+    /* === Default — Dark (neutral graphite) ================================ */
+    --background: 0.15 0.006 260;
+    --foreground: 0.98 0 0;
+
+    --card: 0.18 0.006 260;
+    --card-foreground: 0.96 0 0;
+
+    --popover: 0.18 0.006 260;
+    --popover-foreground: 0.96 0 0;
+
+    --primary: 0.72 0.140 255;
+    --primary-foreground: 0.16 0.006 260;
+
+    --secondary: 0.30 0.010 255; /* Increased brightness for better contrast */
+    --secondary-foreground: 0.96 0 0;
+
+    --muted: 0.24 0.010 255;
+    --muted-foreground: 0.72 0.030 255;
+
+    --accent: 0.25 0.010 255;
+    --accent-foreground: 0.96 0 0;
+
+    --destructive: 0.66 0.180 25;
+    --destructive-foreground: 0.12 0.006 260;
+
+    --border: 0.32 0.010 255;
+    --input:  0.32 0.010 255;
+    --ring:   0.78 0.140 255;
+
+    /* Charts — Default (Dark) — brighter edges */
+    --chart-1: 59 130 246;  /* blue-500 */
+    --chart-2: 74 222 128;  /* green-400 */
+    --chart-3: 251 146 60;  /* orange-400 */
+    --chart-4: 196 181 253; /* purple-200 */
+    --chart-5: 125 211 252; /* sky-300 */
+    --chart-6: 248 113 113; /* rose-400 */
+    --chart-7: 252 211 77;  /* amber-300 */
+    --chart-8: 94 234 212;  /* teal-300 */
+    --chart-9: 129 140 248; /* indigo-400 */
+    --chart-10: 244 114 182;/* pink-400 */
+    --chart-grid: 51 65 85; /* slate-700 */
+  }
+
+  /* === Ocean Theme — Light (cool blue surfaces) ========================== */
+  :root[data-theme="ocean"] {
+    --background: 0.985 0.012 240;          /* paper with cool blue tint */
+    --foreground: 0.18 0.018 255;           /* deep navy text */
+
+    --card: 0.995 0.008 245;                 /* slightly bluer card */
+    --card-foreground: 0.20 0.018 255;
+
+    --popover: 0.995 0.008 245;              /* cool popover */
+    --popover-foreground: 0.20 0.018 255;
+
+    --primary: 0.58 0.19 245;                /* vivid ocean blue */
+    --primary-foreground: 0.99 0 0;
+
+    --secondary: 0.96 0.020 240;
+    --secondary-foreground: 0.22 0.015 250;
+
+    --muted: 0.955 0.016 240;
+    --muted-foreground: 0.55 0.030 245;
+
+    --accent: 0.965 0.020 235;
+    --accent-foreground: 0.22 0.015 245;
+
+    --destructive: 0.60 0.180 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.90 0.014 242;
+    --input:  0.90 0.014 242;
+    --ring:   0.66 0.20 245;
+
+    /* Charts — Ocean (Light) — cool-leading spectrum */
+    --chart-1: 37 99 235;   /* blue-600 */
+    --chart-2: 14 165 233;  /* sky-500 */
+    --chart-3: 6 182 212;   /* cyan-500 */
+    --chart-4: 20 184 166;  /* teal-500 */
+    --chart-5: 34 197 94;   /* green-500 */
+    --chart-6: 250 204 21;  /* yellow-400 */
+    --chart-7: 234 88 12;   /* orange-600 */
+    --chart-8: 236 72 153;  /* pink-500 */
+    --chart-9: 99 102 241;  /* indigo-500 */
+    --chart-10: 147 51 234; /* purple-600 */
+    --chart-grid: 199 210 227; /* blue-200-ish grid */
+  }
+  .dark[data-theme="ocean"] {
+    --background: 0.16 0.012 247;           /* cool navy */
+    --foreground: 0.98 0 0;
+
+    --card: 0.19 0.012 247;
+    --card-foreground: 0.96 0 0;
+
+    --popover: 0.19 0.014 242;
+    --popover-foreground: 0.96 0 0;
+
+    --primary: 0.78 0.22 245;
+    --primary-foreground: 0.14 0.010 255;
+
+    --secondary: 0.30 0.014 245; /* Increased brightness */
+    --secondary-foreground: 0.96 0 0;
+
+    --muted: 0.26 0.014 245;
+    --muted-foreground: 0.74 0.030 245;
+
+    --accent: 0.28 0.016 242;
+    --accent-foreground: 0.96 0 0;
+
+    --destructive: 0.66 0.180 25;
+    --destructive-foreground: 0.12 0.006 260;
+
+    --border: 0.34 0.014 245;
+    --input:  0.34 0.014 245;
+    --ring:   0.84 0.22 245;
+
+    /* Charts — Ocean (Dark) */
+    --chart-1: 96 165 250;  /* blue-400 */
+    --chart-2: 56 189 248;  /* sky-400 */
+    --chart-3: 45 212 191;  /* teal-400 */
+    --chart-4: 34 197 94;   /* green-500 */
+    --chart-5: 234 179 8;   /* yellow-500 */
+    --chart-6: 251 146 60;  /* orange-400 */
+    --chart-7: 248 113 113; /* rose-400 */
+    --chart-8: 196 181 253; /* purple-200 */
+    --chart-9: 129 140 248; /* indigo-400 */
+    --chart-10: 59 130 246; /* blue-500 */
+    --chart-grid: 51 65 85; /* slate-700 */
+  }
+
+  /* === Jade Theme — Light (fresh green surfaces) ========================== */
+  :root[data-theme="jade"] {
+    --background: 0.985 0.012 160;          /* gentle green tint */
+    --foreground: 0.18 0.016 160;
+
+    --card: 0.995 0.008 160;
+    --card-foreground: 0.20 0.016 160;
+
+    --popover: 0.995 0.008 160;
+    --popover-foreground: 0.20 0.016 160;
+
+    --primary: 0.62 0.20 155;               /* vivid jade */
+    --primary-foreground: 0.99 0 0;
+
+    --secondary: 0.96 0.018 160;
+    --secondary-foreground: 0.22 0.014 165;
+
+    --muted: 0.955 0.016 160;
+    --muted-foreground: 0.55 0.030 165;
+
+    --accent: 0.965 0.018 165;
+    --accent-foreground: 0.22 0.014 165;
+
+    --destructive: 0.60 0.180 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.90 0.014 160;
+    --input:  0.90 0.014 160;
+    --ring:   0.68 0.20 155;
+
+    /* Charts — Jade (Light) — green-leading spectrum */
+    --chart-1: 16 185 129;  /* emerald-500 */
+    --chart-2: 34 197 94;   /* green-500 */
+    --chart-3: 132 204 22;  /* lime-500 */
+    --chart-4: 250 204 21;  /* yellow-400 */
+    --chart-5: 234 88 12;   /* orange-600 */
+    --chart-6: 6 182 212;   /* cyan-500 */
+    --chart-7: 14 165 233;  /* sky-500 */
+    --chart-8: 99 102 241;  /* indigo-500 */
+    --chart-9: 147 51 234;  /* purple-600 */
+    --chart-10: 236 72 153; /* pink-500 */
+    --chart-grid: 203 213 225; /* slate-300 */
+  }
+  .dark[data-theme="jade"] {
+    --background: 0.16 0.012 160;          /* forest graphite */
+    --foreground: 0.98 0 0;
+
+    --card: 0.19 0.012 160;
+    --card-foreground: 0.96 0 0;
+
+    --popover: 0.19 0.012 165;
+    --popover-foreground: 0.96 0 0;
+
+    --primary: 0.80 0.22 155;
+    --primary-foreground: 0.14 0.010 160;
+
+    --secondary: 0.30 0.014 160; /* Increased brightness */
+    --secondary-foreground: 0.96 0 0;
+
+    --muted: 0.26 0.014 160;
+    --muted-foreground: 0.74 0.030 165;
+
+    --accent: 0.28 0.016 165;
+    --accent-foreground: 0.96 0 0;
+
+    --destructive: 0.66 0.180 25;
+    --destructive-foreground: 0.12 0.006 260;
+
+    --border: 0.34 0.014 160;
+    --input:  0.34 0.014 160;
+    --ring:   0.86 0.22 155;
+
+    /* Charts — Jade (Dark) */
+    --chart-1: 52 211 153;  /* emerald-400 */
+    --chart-2: 74 222 128;  /* green-400 */
+    --chart-3: 163 230 53;  /* lime-400 */
+    --chart-4: 250 204 21;  /* yellow-400 */
+    --chart-5: 251 146 60;  /* orange-400 */
+    --chart-6: 45 212 191;  /* teal-400 */
+    --chart-7: 56 189 248;  /* sky-400 */
+    --chart-8: 129 140 248; /* indigo-400 */
+    --chart-9: 196 181 253; /* purple-200 */
+    --chart-10: 244 114 182;/* pink-400 */
+    --chart-grid: 51 65 85; /* slate-700 */
+  }
+
+  /* === Plum Theme — Light (soft plum surfaces) ============================ */
+  :root[data-theme="plum"] {
+    --background: 0.985 0.014 320;          /* gentle plum tint */
+    --foreground: 0.18 0.020 325;
+
+    --card: 0.995 0.010 322;
+    --card-foreground: 0.20 0.020 325;
+
+    --popover: 0.995 0.010 322;
+    --popover-foreground: 0.20 0.020 325;
+
+    --primary: 0.58 0.24 325;               /* vivid plum */
+    --primary-foreground: 0.99 0 0;
+
+    --secondary: 0.96 0.020 322;
+    --secondary-foreground: 0.22 0.016 325;
+
+    --muted: 0.955 0.018 320;
+    --muted-foreground: 0.56 0.032 325;
+
+    --accent: 0.965 0.022 322;
+    --accent-foreground: 0.22 0.016 325;
+
+    --destructive: 0.60 0.180 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.90 0.016 322;
+    --input:  0.90 0.016 322;
+    --ring:   0.66 0.24 325;
+
+    /* Charts — Plum (Light) — warm/cool alternating for separation */
+    --chart-1: 147 51 234;  /* purple-600 */
+    --chart-2: 236 72 153;  /* pink-500 */
+    --chart-3: 29 78 216;   /* blue-700 */
+    --chart-4: 245 158 11;  /* amber-500 */
+    --chart-5: 99 102 241;  /* indigo-500 */
+    --chart-6: 34 197 94;   /* green-500 */
+    --chart-7: 244 63 94;   /* rose-500 */
+    --chart-8: 14 165 233;  /* sky-500 */
+    --chart-9: 234 88 12;   /* orange-600 */
+    --chart-10: 20 184 166; /* teal-500 */
+    --chart-grid: 212 212 216; /* zinc-300 */
+  }
+  .dark[data-theme="plum"] {
+    --background: 0.16 0.016 325;          /* plum graphite */
+    --foreground: 0.98 0 0;
+
+    --card: 0.19 0.016 325;
+    --card-foreground: 0.96 0 0;
+
+    --popover: 0.19 0.018 322;
+    --popover-foreground: 0.96 0 0;
+
+    --primary: 0.80 0.26 325;
+    --primary-foreground: 0.14 0.010 330;
+
+    --secondary: 0.30 0.018 325; /* Increased brightness */
+    --secondary-foreground: 0.96 0 0;
+
+    --muted: 0.27 0.018 325;
+    --muted-foreground: 0.74 0.032 325;
+
+    --accent: 0.29 0.020 322;
+    --accent-foreground: 0.96 0 0;
+
+    --destructive: 0.66 0.180 25;
+    --destructive-foreground: 0.12 0.006 260;
+
+    --border: 0.35 0.018 325;
+    --input:  0.35 0.018 325;
+    --ring:   0.86 0.26 325;
+
+    /* Charts — Plum (Dark) */
+    --chart-1: 196 181 253; /* purple-200 */
+    --chart-2: 244 114 182; /* pink-400 */
+    --chart-3: 59 130 246;  /* blue-500 */
+    --chart-4: 251 191 36;  /* amber-400 */
+    --chart-5: 129 140 248; /* indigo-400 */
+    --chart-6: 74 222 128;  /* green-400 */
+    --chart-7: 248 113 113; /* rose-400 */
+    --chart-8: 125 211 252; /* sky-300 */
+    --chart-9: 251 146 60;  /* orange-400 */
+    --chart-10: 94 234 212; /* teal-300 */
+    --chart-grid: 63 63 70; /* zinc-700 */
+  }
+
+  /* Global element hooks */
+  * { border-color: oklch(var(--border)); }
+  html, body, #root {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+  }
+
+  /* Accessible, soft focus ring */
+  :is(button,[role="button"],a,input,select,textarea):focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px oklch(1 0 0 / 0.18),
+      0 0 0 4px oklch(var(--ring));
+  }
+
+  /* Scrollbar tuned to muted */
+  :root { scrollbar-color: color-mix(in oklab, oklch(var(--muted-foreground)) 40%, transparent) oklch(var(--muted)); }
+  *::-webkit-scrollbar { width: 12px; height: 12px; }
+  *::-webkit-scrollbar-track { background: oklch(var(--muted)); }
+  *::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, oklch(var(--muted-foreground)) 45%, transparent);
+    border-radius: 10px;
+    border: 3px solid oklch(var(--muted));
+  }
+}
+
+@layer components {
+  .card { background-color: oklch(var(--card)); color: oklch(var(--card-foreground)); border: 1px solid oklch(var(--border)); border-radius: 1rem; }
+  .btn-primary { background-color: oklch(var(--primary)); color: oklch(var(--primary-foreground)); }
+  .input { background: oklch(var(--background)); color: oklch(var(--foreground)); border: 1px solid oklch(var(--input)); }
+  .muted { background: oklch(var(--muted)); color: oklch(var(--muted-foreground)); }
+}
+
+/* Chart usage example in JS:
+   const css = getComputedStyle(document.documentElement);
+   const c1 = `rgb(${css.getPropertyValue('--chart-1').trim()})`;
+   // Use c1 as stroke/fill; grid color: rgb(var(--chart-grid)).
+*/
