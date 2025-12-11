@@ -9,7 +9,7 @@ import { CollapsibleJson } from "../components/ui/CollapsibleJson";
 import { Eye, EyeOff } from "lucide-react";
 
 export default function App4DataWeb() {
-  const [baseUrl, setBaseUrl] = useState('https://datawebws.usitc.gov/dataweb');
+  const [baseUrl, setBaseUrl] = useState(import.meta.env.VITE_DATAWEB_BASE_URL || '');
   const [authType, setAuthType] = useState<'bearer'|'x-api-key'>('bearer'); // 預設為 bearer
   const [apiKey, setApiKey] = useState<string>(() => localStorage.getItem('dataweb_api_key') || '');
   const [showApiKey, setShowApiKey] = useState(false);
