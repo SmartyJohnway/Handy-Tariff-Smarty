@@ -87,6 +87,11 @@ export const handler: Handler = async (event) => {
 
     // console.log(`[dataweb-proxy] Base URL: ${base}, Endpoint: ${endpoint}`);
 
+    if (!base) {
+      const errorHeaders: Record<string, string> = { "content-type": "application/json", "X-Adapter-Mode": "dataweb:proxy" };
+      return { statusCode: 400, headers: errorHeaders, body: JSON.stringify({ error: "Missing 'base' parameter or DATAWEB_BASE_URL environment variable" }) };
+    }
+
     if (!endpoint || !/^\//.test(endpoint)) {
       const errorHeaders: Record<string, string> = { "content-type": "application/json", "X-Adapter-Mode": "dataweb:proxy" };
       return { statusCode: 400, headers: errorHeaders, body: JSON.stringify({ error: "Missing or invalid 'endpoint' (must start with /)" }) };
