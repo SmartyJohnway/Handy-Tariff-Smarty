@@ -9,7 +9,7 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
 
 [dev]
   # Force Netlify Dev to use the local workspace scripts (avoid workspace auto-detection issues on Windows)
@@ -39,3 +39,4 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
