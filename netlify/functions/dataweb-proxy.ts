@@ -2,7 +2,7 @@ import type { Handler } from "@netlify/functions";
 import { fetch, RequestInit } from "undici";
 
 // Generic proxy to USITC DataWeb to avoid browser CORS
-// Usage (dev): /api/dataweb-proxy?endpoint=/api/v2/system-alert&base=https://datawebws.usitc.gov/dataweb
+// Usage (dev): /api/dataweb-proxy?endpoint=/api/v2/system-alert&base=<DATAWEB_URL>
 // Auth: send header 'x-dw-auth: Bearer <token>' or 'x-dw-key: <token>' from the client.
 
 const MAX_REDIRECTS = 10;
