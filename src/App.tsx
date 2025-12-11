@@ -29,13 +29,13 @@ const NORMAL_TABS: { key: Tab; label: string; icon: React.ElementType }[] = [
   { key: 'advanced-trends', label: '進階市場趨勢', icon: LineChart },
   { key: 'federal-register', label: '聯邦公報', icon: Landmark },
   { key: 'federal-register2', label: '聯邦預報', icon: CalendarClock },  
-  { key: 'query', label: '關稅查詢', icon: FileSearch2 },
   { key: 'hts', label: 'HTSUS 資料庫', icon: Library },
   { key: 'sources', label: '資料來源與工具', icon: Combine },
 ];
 
 const DEV_TABS: { key: Tab; label: string; icon: React.ElementType }[] = [
   { key: 'intelligence', label: '首頁', icon: ShieldCheck },
+  { key: 'query', label: '關稅查詢', icon: FileSearch2 },
   { key: 'charts', label: 'shadcn 圖表示例', icon: PieChart },
   { key: 'dataweb', label: 'DataWeb 驗證', icon: Network },
   { key: 'translation', label: '貨名翻譯', icon: Languages },
