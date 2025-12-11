@@ -18,25 +18,6 @@
 *   **後端**: Netlify Functions (TypeScript)
 *   **打包工具**: Vite (底層為 esbuild + Rollup)
 
-## 本地開發 (Local Development)
-
-本專案採用子專案獨立開發模式，提供一個統一且穩定的開發體驗。
-
-1.  **進入專案目錄**:
-    ```bash
-    cd Handy-Tariff-Smarty
-    ```
-
-2.  **啟動開發伺服器**:
-    ```bash
-    netlify dev
-    ```
-
-3.  **開始開發**:
-    *   Netlify CLI 將會啟動一個整合伺服器在 `http://localhost:8888`。
-    *   這個伺服器會自動啟動 Vite 前端開發伺服器 (在 `http://localhost:5174`) 並代理所有請求。
-    *   同時，它也會在 `http://localhost:8888/.netlify/functions/` 上提供所有後端 API。
-    *   您只需在瀏覽器中訪問 `http://localhost:8888` 即可進行完整的開發與測試。
 
 ## 專案結構
 
@@ -60,5 +41,5 @@ Handy-Tariff-Smarty/
 
 本專案是 Monorepo 的一部分，所有依賴項均由**根目錄**的 `package.json` 透過 `workspaces` 統一管理。
 
-若需安裝或更新依賴項，請務必在**專案的根目錄** (`D:\HTSUSjohnway-SEP10\`) 執行 `npm install` 或 `npm ci`。
+若需安裝或更新依賴項，請務必在**專案的根目錄** 執行 `npm install` 或 `npm ci`。
 
