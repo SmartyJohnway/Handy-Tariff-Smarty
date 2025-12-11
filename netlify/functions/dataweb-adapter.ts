@@ -1,5 +1,6 @@
 // Cache-busting comment: 2025-10-07T05:30:00Z
 import type { Handler, HandlerEvent, HandlerResponse, HandlerContext } from "@netlify/functions";
+import { getFunctionsBaseUrl } from "./utils/netlify";
 import { UnifiedTariff, ProgramRate, GlobalVars, SystemAlert, TradeStat } from "./models/unified";
 import { normalizeInvestigations } from "./utils/investigation-parser";
 import { handler as proxyHandler } from './dataweb-proxy';
@@ -71,8 +72,9 @@ async function callDatawebApi(endpoint: string, event: HandlerEvent, method: str
   }
 
   // Construct a mock HandlerEvent for the proxy function
+  const functionsBase = getFunctionsBaseUrl(event);
   const proxyEvent: HandlerEvent = {
-    rawUrl: `http://localhost:8888/api/dataweb-proxy?base=${encodeURIComponent(baseUrl)}&endpoint=${encodeURIComponent(endpoint)}`,
+    rawUrl: `${functionsBase}/dataweb-proxy?base=${encodeURIComponent(baseUrl)}&endpoint=${encodeURIComponent(endpoint)}`,
     rawQuery: `base=${encodeURIComponent(baseUrl)}&endpoint=${encodeURIComponent(endpoint)}`,
     path: '/api/dataweb-proxy',
     httpMethod: method,

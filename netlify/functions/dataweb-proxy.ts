@@ -82,7 +82,7 @@ async function fetchWithCookieRedirects(upstream: string, init: RequestInit, bas
 export const handler: Handler = async (event) => {
   try {
     const url = new URL(event.rawUrl);
-    const base = url.searchParams.get("base") || process.env.DATAWEB_BASE_URL;
+    const base = process.env.DATAWEB_BASE_URL;
     const endpoint = url.searchParams.get("endpoint") || url.searchParams.get("path") || "";
 
     // console.log(`[dataweb-proxy] Base URL: ${base}, Endpoint: ${endpoint}`);
