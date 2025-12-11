@@ -9,7 +9,6 @@ import { CollapsibleJson } from "../components/ui/CollapsibleJson";
 import { Eye, EyeOff } from "lucide-react";
 
 export default function App4DataWeb() {
-  const [baseUrl, setBaseUrl] = useState(import.meta.env.VITE_DATAWEB_BASE_URL || '');
   const [authType, setAuthType] = useState<'bearer'|'x-api-key'>('bearer'); // 預設為 bearer
   const [apiKey, setApiKey] = useState<string>(() => localStorage.getItem('dataweb_api_key') || '');
   const [showApiKey, setShowApiKey] = useState(false);
@@ -25,7 +24,7 @@ export default function App4DataWeb() {
   // 檢查是否處於維護期間 (透過 system-alert 端點)
   const checkMaintenance = async () => {
     try {
-      const proxy = `/api/dataweb-proxy?base=${encodeURIComponent(baseUrl)}&endpoint=${encodeURIComponent('/api/v2/system-alert')}`;
+      const proxy = `/api/dataweb-proxy?endpoint=${encodeURIComponent('/api/v2/system-alert')}`;
       const r = await fetch(proxy, { method: 'GET' });
       const txt = await r.text();
       const htmlMaint = /Site under maintenance/i.test(txt) || /<html/i.test(txt) && !txt.trim().startsWith('{') && !txt.trim().startsWith('[');
@@ -39,7 +38,7 @@ export default function App4DataWeb() {
     }
   };
 
-  React.useEffect(() => { checkMaintenance(); }, [baseUrl]);
+  React.useEffect(() => { checkMaintenance(); }, []);
 
   const presets = [
     {
@@ -115,7 +114,7 @@ export default function App4DataWeb() {
     setLoading(true); setStatus(''); setResponse(''); setResponseJson(null);
     try {
       localStorage.setItem('dataweb_api_key', apiKey);
-      const proxy = `/api/dataweb-proxy?base=${encodeURIComponent(baseUrl)}&endpoint=${encodeURIComponent(endpoint)}`;
+      const proxy = `/api/dataweb-proxy?endpoint=${encodeURIComponent(endpoint)}`;
       const headers: Record<string,string> = { 'content-type': 'application/json' };
       if (apiKey.trim()) {
         if (authType === 'bearer') headers['x-dw-auth'] = `Bearer ${apiKey.trim()}`;
@@ -162,10 +161,6 @@ export default function App4DataWeb() {
       <Card>
         <CardHeader><CardTitle className="text-base">連線設定</CardTitle></CardHeader>
         <CardContent className="space-y-4">
-          <div className="space-y-1">
-            <Label htmlFor="dwv-base-url">Base URL</Label>
-            <Input id="dwv-base-url" value={baseUrl} onChange={e=>setBaseUrl(e.target.value)} />
-          </div>
           <div className="space-y-1">
             <Label>授權類型 + 金鑰</Label>
             <div className="flex gap-2">

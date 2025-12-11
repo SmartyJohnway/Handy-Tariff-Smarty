@@ -199,9 +199,8 @@ export function DataSourceVerifier() {
     switch (key) {
       case 'hts-proxy': return `/api/hts-proxy?query=${hts}`;
       case 'dataweb-proxy':
-        const base = import.meta.env.VITE_DATAWEB_BASE_URL || '';
         const endpoint = `/api/v2/tariff/currentTariffDetails?year=${year}&hts8=${hts}`;
-        return `/api/dataweb-proxy?base=${encodeURIComponent(base)}&endpoint=${encodeURIComponent(endpoint)}`;
+        return `/api/dataweb-proxy?endpoint=${encodeURIComponent(endpoint)}`;
       case 'baseline-adapter': return `/api/baseline-adapter?year=${year}&search_term=${hts}`;
       case 'dataweb-adapter': return `/api/dataweb-adapter?year=${year}&hts8=${hts}`;
       default: return '';
