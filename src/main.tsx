@@ -13,29 +13,32 @@ import '@/styles/tailwind.css';
 import '@/i18n/config';
 
 const container = document.getElementById('root');
-const queryClient = createQueryClient();
-const enableDevtools =
-  typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_QUERY_DEVTOOLS === '1';
-if (container) {
-  const root = createRoot(container);
-  root.render(
-    <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <NotificationProvider>
-          <ResearchTrailProvider>
-            <SearchProvider>
-              <IntelligenceProvider>
-                <FederalRegisterProvider>
-                  <React.Suspense fallback={null}>
-                    <App />
-                  </React.Suspense>
-                  {enableDevtools ? <ReactQueryDevtools initialIsOpen={false} /> : null}
-                </FederalRegisterProvider>
-              </IntelligenceProvider>
-            </SearchProvider>
-          </ResearchTrailProvider>
-        </NotificationProvider>
-      </QueryClientProvider>
-    </React.StrictMode>
-  );
+
+if (!container) {
+  throw new Error('Root container not found. Failed to mount React app.');
 }
+
+const queryClient = createQueryClient();
+const enableDevtools = import.meta.env.VITE_QUERY_DEVTOOLS === '1';
+
+const root = createRoot(container);
+root.render(
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <NotificationProvider>
+        <ResearchTrailProvider>
+          <SearchProvider>
+            <IntelligenceProvider>
+              <FederalRegisterProvider>
+                <React.Suspense fallback={null}>
+                  <App />
+                </React.Suspense>
+                {enableDevtools && <ReactQueryDevtools initialIsOpen={false} />}
+              </FederalRegisterProvider>
+            </IntelligenceProvider>
+          </SearchProvider>
+        </ResearchTrailProvider>
+      </NotificationProvider>
+    </QueryClientProvider>
+  </React.StrictMode>
+);
