@@ -1,6 +1,6 @@
 ﻿import type { Handler, HandlerEvent, HandlerResponse } from "@netlify/functions";
 import { load as cheerioLoad } from 'cheerio';
-import { normalizeResults, normalizeFRDoc, NormalizedFRDoc } from "@/lib/frNormalize";
+import { normalizeResults, normalizeFRDoc, NormalizedFRDoc } from "../../src/lib/frNormalize";
 import { getFunctionsBaseUrl } from "./utils/netlify";
 
 type ScoreTerm = {

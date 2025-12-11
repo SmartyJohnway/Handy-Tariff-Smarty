@@ -4,7 +4,10 @@ import { getFunctionsBaseUrl } from "./utils/netlify";
 export const handler: Handler = async (event: HandlerEvent) => {
   const functionsBase = getFunctionsBaseUrl(event);
   const endpoint = '/api/v2/tariff/tariffProgramsLookup';
-  const base = 'https://datawebws.usitc.gov/dataweb';
+  const base = process.env.DATAWEB_BASE_URL;
+  if (!base) {
+    return { statusCode: 500, body: JSON.stringify({ error: "DATAWEB_BASE_URL environment variable is not set." }) };
+  }
 
   // We call our own proxy to handle CORS and potential auth.
   const proxyUrl = new URL(`${functionsBase}/dataweb-proxy`);

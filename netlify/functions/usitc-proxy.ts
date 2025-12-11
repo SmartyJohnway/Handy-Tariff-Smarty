@@ -1,7 +1,5 @@
 import type { Handler } from "@netlify/functions";
 
-const USITC_API_URL = "https://datawebws.usitc.gov/dataweb/api/v2/report2/runReport";
-
 export const handler: Handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return {
@@ -10,6 +8,15 @@ export const handler: Handler = async (event) => {
       body: JSON.stringify({ error: "Method Not Allowed" }),
     };
   }
+
+  const base = process.env.DATAWEB_BASE_URL;
+  if (!base) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: "DATAWEB_BASE_URL is not configured on the server." }),
+    };
+  }
+  const USITC_API_URL = `${base}/api/v2/report2/runReport`;
 
   const apiKey = process.env.DATAWEB_API_TOKEN;
   if (!apiKey) {

@@ -59,7 +59,10 @@ function parseTradeStats(sections: DatawebSection[] | undefined): TradeStat[] {
 
 async function callDatawebApi(endpoint: string, event: HandlerEvent, method: string = "GET", body: any = null) {
   // console.log(`[Dataweb Adapter] Calling Dataweb API endpoint: ${endpoint} with method ${method} via direct invocation`);
-  const baseUrl = process.env.DATAWEB_BASE_URL || 'https://datawebws.usitc.gov/dataweb';
+  const baseUrl = process.env.DATAWEB_BASE_URL;
+  if (!baseUrl) {
+    throw new Error("DATAWEB_BASE_URL environment variable is not set.");
+  }
   const token = process.env.DATAWEB_TOKEN;
 
   const headers: Record<string, string> = { 'content-type': 'application/json' };

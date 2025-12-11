@@ -1,7 +1,7 @@
 ﻿import type { Handler, HandlerEvent, HandlerResponse, HandlerContext } from "@netlify/functions";
 import * as fs from 'fs';
 import * as path from 'path';
-import { cleanHtsToSix } from "@/utils/countries";
+import { cleanHtsToSix } from "../../src/utils/countries";
 import { getFunctionsBaseUrl } from "./utils/netlify";
 import { handler as adapterHandler } from './dataweb-adapter';
 

@@ -1,6 +1,6 @@
 import type { Handler, HandlerEvent, HandlerResponse } from "@netlify/functions";
 import { parseCompanyRatesFromHtml, detectFrSpecialCase } from "@/utils/fr-adcvd-parser";
-import { normalizeResults, normalizeFRDoc, NormalizedFRDoc } from '@/lib/frNormalize';
+import { normalizeFind, NormalizedFRDoc } from "@/lib/frNormalize";
 import { getFunctionsBaseUrl } from "./utils/netlify";
 
 const cache = new Map<string, { data: any; timestamp: number }>();
@@ -39,7 +39,7 @@ export const handler: Handler = async (event: HandlerEvent): Promise<HandlerResp
             };
         }
 
-        const normalizedDoc = normalizeFRDoc(docJson) as NormalizedFRDoc | null;
+        const normalizedDoc = normalizeFind(docJson) as NormalizedFRDoc | null;
         if (!normalizedDoc) {
             return {
                 statusCode: 404,

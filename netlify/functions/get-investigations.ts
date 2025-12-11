@@ -4,7 +4,10 @@ import { getFunctionsBaseUrl } from "./utils/netlify";
 
 async function callDatawebApi(endpoint: string, event: HandlerEvent) {
   const functionsBase = getFunctionsBaseUrl(event);
-  const baseUrl = process.env.DATAWEB_BASE_URL || 'https://datawebws.usitc.gov/dataweb';
+  const baseUrl = process.env.DATAWEB_BASE_URL;
+  if (!baseUrl) {
+    throw new Error("DATAWEB_BASE_URL environment variable is not set.");
+  }
   const token = process.env.DATAWEB_TOKEN;
 
   const proxyUrl = new URL(`${functionsBase}/dataweb-proxy`);

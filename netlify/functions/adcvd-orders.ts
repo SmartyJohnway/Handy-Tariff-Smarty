@@ -1,10 +1,7 @@
 import { Handler } from '@netlify/functions';
 import fetch from 'node-fetch';
 
-const BASE_URL =
-  process.env.ADCVD_BASE_URL ||
-  // 預設使用 data.trade.gov 端點
-  'https://data.trade.gov/adcvd_orders/v1/search';
+const BASE_URL = process.env.ADCVD_BASE_URL;
 const API_KEY = process.env.ADCVD_SUBSCRIPTION_KEY || '';
 const USER_AGENT =
   process.env.ADCVD_USER_AGENT ||
@@ -12,6 +9,12 @@ const USER_AGENT =
 
 export const handler: Handler = async (event) => {
   try {
+    if (!BASE_URL) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: 'Missing ADCVD_BASE_URL env var' }),
+      };
+    }
     if (!API_KEY) {
       return {
         statusCode: 500,
