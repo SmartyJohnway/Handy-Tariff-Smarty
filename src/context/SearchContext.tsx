@@ -32,6 +32,7 @@ interface SearchContextType {
   performHtsSearch: (term: string) => Promise<void>;
   htsResults: HtsItem[];
   isHtsLoading: boolean;
+  htsNavToken: number;
 }
 
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
@@ -75,6 +76,7 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
     return 'intelligence';
   });
   const [htsSearchTerm, setHtsSearchTerm] = useState('');
+  const [htsNavToken, setHtsNavToken] = useState(0);
   const [htsResults, setHtsResults] = useState<HtsItem[]>([]);
   const [isHtsLoading, setIsHtsLoading] = useState(false);
   const [queryTerm, setQueryTerm] = useState<string | null>(null);
@@ -109,7 +111,8 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
       description,
     } as Omit<ViewHtsTrailItem, 'timestamp'>);
     setHtsSearchTerm(code);
-    setActiveTab('hts');
+    setHtsNavToken(t => t + 1);
+    setActiveTab('intelligence');
   };
 
   const performHtsSearch = useCallback(
@@ -153,6 +156,7 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
     performHtsSearch,
     htsResults,
     isHtsLoading,
+    htsNavToken,
   };
 
   return <SearchContext.Provider value={value}>{children}</SearchContext.Provider>;

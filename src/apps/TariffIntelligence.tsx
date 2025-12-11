@@ -28,9 +28,11 @@ import { RelatedFRCard } from '@/components/intelligence/RelatedFRCard';
 import { TariffCalculator } from '@/components/intelligence/TariffCalculator';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { useTranslation } from 'react-i18next';
+import { AdcvdSearchCard } from '@/components/AdcvdSearchCard';
 
 import { useIntelligence } from '@/context/IntelligenceContext';
 import { useHtsReleaseListQuery } from '@/hooks/queries/useHtsReleaseListQuery';
+import { useSearch } from '@/context/SearchContext';
 
 const formatHtsWithDots = (raw: string | undefined | null) => {
   const input = String(raw || '').trim();
@@ -73,6 +75,8 @@ export function TariffIntelligence() {
     idsLinks, setIdsLinks,
     adcvdUpdatedAt, setAdcvdUpdatedAt
   } = useIntelligence();
+  const { htsSearchTerm, htsNavToken } = useSearch();
+  const lastProcessedToken = React.useRef(0);
 
   const [favorites, setFavorites] = useState<{ hts: string; note: string }[]>([]);
   const [queryHts, setQueryHts] = useState('');
@@ -179,6 +183,18 @@ export function TariffIntelligence() {
     setIsSearchLoading(true);
     setQueryHts(normalizedHts);  }
 
+  // Effect to handle navigation from other components (e.g., HTS card click)
+  useEffect(() => {
+    if (htsNavToken > lastProcessedToken.current) {
+      lastProcessedToken.current = htsNavToken;
+      if (htsSearchTerm) {
+        setSearchTerm(htsSearchTerm);
+        handleSearch(htsSearchTerm);
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [htsNavToken]);
+  
   // Initialize from ?hts=... or ?term=...
   useEffect(() => {
     try {
@@ -285,7 +301,7 @@ export function TariffIntelligence() {
         <>
           <HTSDetailsCard data={tariffData} />
           <MarketTrendsChart htsCode={activeHts} defaultAdcvdCountries={adcvdCountryList.map(c => c.country)} />
-          <RelatedFRCard hts={activeHts} rawHts={searchTerm} defaultPerPage={5} />
+          <AdcvdSearchCard htsCode={activeHts} />
         </>
       );
     }
@@ -398,6 +414,7 @@ export function TariffIntelligence() {
                   onViewDetails={openCompanyModal}
                 />
                 <IDSLinksCard isLoading={isAdCvdLoading} links={idsLinks} />
+                <RelatedFRCard hts={activeHts} rawHts={searchTerm} defaultPerPage={5} />
               </>
             ) : (
               <div className="hidden lg:block">

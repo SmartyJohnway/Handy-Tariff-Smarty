@@ -408,304 +408,147 @@ export const HtsResultCard = ({ item, allItems, searchTerm }: { item: HtsItem; a
 
 
     const handleHtsLinkClick = (e: MouseEvent<HTMLAnchorElement>) => {
-
         e.preventDefault();
-
         searchHtsCode(item.htsno);
-
     };
-
-
-
     const handleToggleDetails = async () => {
-
         const nextVisibility = !isDetailsVisible;
-
         setIsDetailsVisible(nextVisibility);
-
         try {
-
             const k = `hts_card_open_${(item.htsno || '').replace(/\./g,'')}`;
-
             sessionStorage.setItem(k, nextVisibility ? '1' : '0');
-
         } catch {}
-
-        
-
         if (nextVisibility && !detailedData && !isDetailLoading) {
-
             setIsDetailLoading(true);
-
             setDetailError(null);
-
             setRawResponses(null); // 保留 debug 線索
-
-
-
             const normalizeHtsTerm = (hts: string): string => {
-
                 const digits = String(hts || '').replace(/\D/g, '');
-
                 let target = digits;
-
-
-
                 if (digits.length >= 12) {
-
                     if (digits.endsWith('000000')) {
-
                         target = digits.slice(0, 6);
-
                     } else if (digits.endsWith('0000')) {
-
                         target = digits.slice(0, 8);
-
                     } else if (digits.endsWith('00')) {
-
                         target = digits.slice(0, 10);
-
                     }
-
                 } else if (digits.length === 10) {
-
                     if (digits.endsWith('00')) {
-
                         target = digits.slice(0, 8);
-
                     }
-
                 }
-
-                
 
                 if (target.length >= 4) {
-
                     let parts = [target.slice(0, 4)];
-
                     if (target.length >= 6) parts.push(target.slice(4, 6));
-
                     if (target.length >= 8) parts.push(target.slice(6, 8));
-
                     if (target.length >= 10) parts.push(target.slice(8, 10));
-
                     if (target.length >= 12) parts.push(target.slice(10, 12));
-
                     return parts.join('.');
-
                 }
-
                 return hts;
-
             };
-
-
 
             const rawDataForDebug: Record<string, any> = {};
-
             const persistDebugPayload = (dataForCache: Partial<HtsItemWithDetails> | null) => {
-
                 setRawResponses(rawDataForDebug);
-
                 try {
-
                     const dataKey = `hts_card_data_${(item.htsno || '').replace(/\./g,'')}`;
-
                     sessionStorage.setItem(dataKey, JSON.stringify({ detailedData: dataForCache, rawResponses: rawDataForDebug }));
-
                 } catch {}
-
             };
 
-
-
             try {
-
                 const fullHtsCode = item.htsno;
-
                 const normalizedDotFormattedTerm = normalizeHtsTerm(fullHtsCode);
-
                 const normalizedDigitsOnly = normalizedDotFormattedTerm.replace(/\./g, '');
-
-                
-
                 const detailsPayload = await fetchHtsDetails(normalizedDigitsOnly);
-
                 if ((detailsPayload as any)?.error) {
-
                     throw new Error((detailsPayload as any).error);
-
                 }
 
                 rawDataForDebug['get_hts_details'] = detailsPayload;
-
                 setDetailedData(detailsPayload as Partial<HtsItemWithDetails>);
-
-
-
                 try {
-
                     const tsAll = await searchDocuments({ term: normalizedDotFormattedTerm, per_page: 10000, includeHeaders: false, skipCache: true });
-
                     const allDocs: any[] = normalizeResults(tsAll.payload) as any[];
-
-
-
                     type GroupVal = { slug: string; name: string; documents: any[]; subgroups: Map<string, any[]> };
-
                     const agencyMap = new Map<string, GroupVal>();
-
                     const order = ['sec232','sec301','trq','sec201','cvd','general','ad','other'];
-
                     const tagLabel: Record<string,string> = { sec232: 'Sec. 232', sec301: 'Sec. 301', trq:'TRQ', sec201:'Sec. 201', cvd:'CVD', general:'General Tariffs', ad:'AD', other:'Other' };
-
                     const subMap = new Map<string, any[]>();
-
-
-
                     const classify = (absOrig: string): string => {
-
                         const s = String(absOrig || '');
-
                         const l = s.toLowerCase();
-
                         if (l.includes('section 232')) return 'sec232';
-
                         if (l.includes('section 301')) return 'sec301';
-
                         if (l.includes('tariff rate quota')) return 'trq';
-
                         if (l.includes('section 201')) return 'sec201';
-
                         if (l.includes('countervailing duty') || /\bCVD\b/i.test(s)) return 'cvd';
-
                         if (l.includes('general tariffs')) return 'general';
-
                         if (l.includes('antidumping') || /\bAD\b/i.test(s)) return 'ad';
-
                         return 'other';
-
                     };
 
-
-
                     for (const d of allDocs) {
-
                         const absOrig = String((d as any)?.abstract || '');
-
                         const tag = classify(absOrig);
-
                         const sArr = subMap.get(tag) || [];
-
                         sArr.push(d);
-
                         subMap.set(tag, sArr);
-
                         const agencies = Array.isArray((d as any)?.agencies) ? (d as any).agencies : [];
 
-
-
                         if (agencies.length) {
-
                             for (const a of agencies) {
-
                                 const key = String(a?.slug || a?.name || a?.raw_name || '').toLowerCase() || '(unknown)';
-
                                 if (!agencyMap.has(key)) agencyMap.set(key, { slug: a?.slug || key, name: a?.name || a?.raw_name || key, documents: [], subgroups: new Map() });
-
                                 const g = agencyMap.get(key)!;
-
                                 g.documents.push(d);
-
                                 const arr = g.subgroups.get(tag) || [];
-
                                 arr.push(d);
-
                                 g.subgroups.set(tag, arr);
-
                             }
-
                         } else {
-
                             const key = '(unclassified)';
-
                             if (!agencyMap.has(key)) agencyMap.set(key, { slug: key, name: 'Unclassified', documents: [], subgroups: new Map() });
-
                             const g = agencyMap.get(key)!;
-
                             g.documents.push(d);
-
                             const arr = g.subgroups.get(tag) || [];
-
                             arr.push(d);
-
                             g.subgroups.set(tag, arr);
-
                         }
-
                     }
 
-
-
                     const groups = Array.from(agencyMap.values()).map(g => {
-
                         const subs = Array.from(g.subgroups.entries()).map(([t, docs]) => ({ tag: t, label: tagLabel[t] || t, count: docs.length, documents: docs }));
-
                         subs.sort((a,b) => (order.indexOf(a.tag) - order.indexOf(b.tag)) || (b.count - a.count));
-
                         return { slug: g.slug, name: g.name, count: g.documents.length, documents: g.documents, subgroups: subs };
-
                     }).sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 
-
-
                     rawDataForDebug['fr_agencies'] = { groups };
-
                     const subgroups = Array.from(subMap.entries()).map(([t, docs]) => ({ tag: t, label: tagLabel[t] || t, count: docs.length, documents: docs }))
-
                         .filter(sg => (sg.count || 0) > 0)
-
                         .sort((a,b) => (order.indexOf(a.tag) - order.indexOf(b.tag)) || (b.count - a.count));
-
                     rawDataForDebug['fr_subgroups'] = { total: allDocs.length, all: allDocs, subgroups };
-
                 } catch (tsError) {
-
                     console.error('Failed to load Federal Register documents', tsError);
-
                 }
-
-
 
                 persistDebugPayload((detailsPayload as Partial<HtsItemWithDetails>) ?? null);
-
             } catch (e: any) {
-
                 const msg = e?.message || t('fr.htsCard.detailLoadFailed');
-
                 if (!rawDataForDebug['get_hts_details']) {
-
                     rawDataForDebug['get_hts_details'] = { error: msg };
-
                 }
-
                 setDetailError(msg);
-
                 addNotification(msg, 'error');
-
                 persistDebugPayload(detailedData ?? null);
-
             } finally {
-
                 setIsDetailLoading(false);
-
             }
-
         }
-
     };
-
-
 
     // Combine initial item data with detailed data once it's fetched
     const displayItem = useMemo(() => {

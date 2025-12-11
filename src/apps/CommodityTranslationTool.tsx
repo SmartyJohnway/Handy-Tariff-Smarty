@@ -4,6 +4,7 @@ import { Card } from '../components/ui/Card';
 import { Alert, AlertDescription } from '../components/ui/alert';
 import { AdcvdSearchCard } from '@/components/AdcvdSearchCard';
 import { Ustr301Explorer } from '@/components/Ustr301Explorer';
+import { IDSCard } from '@/components/IDSCard';
 
 export default function CommodityTranslationTool() {
   return (
@@ -32,6 +33,8 @@ export default function CommodityTranslationTool() {
       <AdcvdSearchCard />
 
       <Ustr301Explorer />
+
+      <IDSCard />
     </div>
   );
 }

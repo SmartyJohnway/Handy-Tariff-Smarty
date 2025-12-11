@@ -33,6 +33,7 @@ export const IDSLinksCard: React.FC<IDSLinksCardProps> = ({ isLoading, links }) 
           <CardTitle className="break-words">{tAny('idsLinks.title')}</CardTitle>
         </CardHeader>
         <CardContent>
+          {/* --- Original Link Display Functionality --- */}
           {isLoading ? (
             <div className="space-y-3">
               <Skeleton className="h-5 w-full" />

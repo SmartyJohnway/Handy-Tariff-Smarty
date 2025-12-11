@@ -158,11 +158,14 @@ export default function MarketTrendsAdvanced() {
     }
   }, [flow, compareEnabled, compareMetric, metrics, setMetrics]);
 
-  const chartHostRef = useRef<HTMLDivElement | null>(null);
+  const [chartNode, setChartNode] = useState<HTMLDivElement | null>(null);
+  const chartCallbackRef = React.useCallback((node: HTMLDivElement | null) => {
+    setChartNode(node);
+  }, []);
   const [chartSize, setChartSize] = useState<{ w: number; h: number }>({ w: 0, h: 0 });
   useEffect(() => {
-    if (!chartHostRef.current) return;
-    const el = chartHostRef.current;
+    if (!chartNode) return;
+    const el = chartNode;
     const measure = () => {
       const rect = el.getBoundingClientRect();
       const w = Math.floor(rect.width || el.clientWidth || 0);
@@ -200,7 +203,9 @@ export default function MarketTrendsAdvanced() {
       };
     }
     return () => { cleanup?.(); };
-  }, []);
+  }, [chartNode]);
+  const canRenderCharts = chartSize.w > 10 && chartSize.h > 10;
+  const fallbackHeight = chartSize.h || 384;
 
   const handleHtsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -1122,22 +1127,28 @@ export default function MarketTrendsAdvanced() {
           <CardContent className="w-full">
           {compareEnabled && compareData.length > 0 && (
             <div className="w-full overflow-x-auto">
-              <div className="min-w-[720px]">
-                <ResponsiveContainer width="100%" height={chartSize.h || 384}>
-                  <BarChart key={`compare:${compareMetric}:${compareSort}:${compareTopN}`} data={compareData} layout="vertical">
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis type="number" tickFormatter={(v: any)=> (compareMode==='pct'? (v as number).toLocaleString(undefined,{style:'percent',minimumFractionDigits:2}) : (v as number).toLocaleString())} />
-                    <YAxis type="category" dataKey="year" width={140} />
-                    <RechartsTooltip formatter={(value: number, name) => (compareMode==='pct'? (value as number).toLocaleString(undefined,{style:'percent',minimumFractionDigits:2}) : (value as number).toLocaleString())} />
-                    <Legend />
-                    <Bar
-                      key={compareMetric}
-                      dataKey={compareMetric}
-                      name={t('market.advanced.barName', { label: getMetricLabel(compareMetric), yearA: compareLabelYears.primary || '-' , yearB: compareLabelYears.secondary || '-' })}
-                      fill={chartSlotColor(0, chartColors)}
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
+              <div ref={chartCallbackRef} className="min-w-[720px]">
+                {canRenderCharts ? (
+                  <ResponsiveContainer width="100%" height={fallbackHeight}>
+                    <BarChart key={`compare:${compareMetric}:${compareSort}:${compareTopN}`} data={compareData} layout="vertical">
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis type="number" tickFormatter={(v: any)=> (compareMode==='pct'? (v as number).toLocaleString(undefined,{style:'percent',minimumFractionDigits:2}) : (v as number).toLocaleString())} />
+                      <YAxis type="category" dataKey="year" width={140} />
+                      <RechartsTooltip formatter={(value: number, name) => (compareMode==='pct'? (value as number).toLocaleString(undefined,{style:'percent',minimumFractionDigits:2}) : (value as number).toLocaleString())} />
+                      <Legend />
+                      <Bar
+                        key={compareMetric}
+                        dataKey={compareMetric}
+                        name={t('market.advanced.barName', { label: getMetricLabel(compareMetric), yearA: compareLabelYears.primary || '-' , yearB: compareLabelYears.secondary || '-' })}
+                        fill={chartSlotColor(0, chartColors)}
+                      />
+                    </BarChart>
+                  </ResponsiveContainer>
+                ) : (
+                  <div className="h-[384px] flex items-center justify-center text-sm text-muted-foreground">
+                    {t('market.chart.preparing')}
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -1200,35 +1211,41 @@ export default function MarketTrendsAdvanced() {
                     <AlertDescription>{errorMessage}</AlertDescription>
                 </Alert>
             )}
-            {!errorMessage && !isQueryLoading && chartData.length > 0 && lineSeries.length > 0 && (
+            {!compareEnabled && !errorMessage && !isQueryLoading && chartData.length > 0 && lineSeries.length > 0 && (
               <div className="w-full overflow-x-auto">
-                <div ref={chartHostRef} className="min-w-[720px]" style={{ minHeight: 384 }}>
-                  <ResponsiveContainer width="100%" height={chartSize.h || 384}>
-                    <AreaChart
-                      data={chartData}
-                      margin={{ top: 8, right: 20, left: 12, bottom: 8 }}
-                    >
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="year" />
-                      <YAxis tickFormatter={(value: any) => new Intl.NumberFormat('en-US', { notation: 'compact', compactDisplay: 'short' }).format(value)} />
-                      <RechartsTooltip formatter={(value: number) => (value as number).toLocaleString()} />
-                      <Legend />
-                      {lineSeries.map((series: SeriesWithStyle) => (
-                        <Area
-                          key={series.key}
-                          type="monotone"
-                          dataKey={series.key}
-                          name={series.label}
-                          stroke={series.color}
-                          fill={series.color}
-                          fillOpacity={0.22}
-                          strokeWidth={2}
-                          strokeDasharray={series.strokeDasharray}
-                          activeDot={{ r: 3 }}
-                        />
-                      ))}
-                    </AreaChart>
-                  </ResponsiveContainer>
+                <div ref={chartCallbackRef} className="min-w-[720px]" style={{ minHeight: 384 }}>
+                  {canRenderCharts ? (
+                    <ResponsiveContainer width="100%" height={fallbackHeight}>
+                      <AreaChart
+                        data={chartData}
+                        margin={{ top: 8, right: 20, left: 12, bottom: 8 }}
+                      >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="year" />
+                        <YAxis tickFormatter={(value: any) => new Intl.NumberFormat('en-US', { notation: 'compact', compactDisplay: 'short' }).format(value)} />
+                        <RechartsTooltip formatter={(value: number) => (value as number).toLocaleString()} />
+                        <Legend />
+                        {lineSeries.map((series: SeriesWithStyle) => (
+                          <Area
+                            key={series.key}
+                            type="monotone"
+                            dataKey={series.key}
+                            name={series.label}
+                            stroke={series.color}
+                            fill={series.color}
+                            fillOpacity={0.22}
+                            strokeWidth={2}
+                            strokeDasharray={series.strokeDasharray}
+                            activeDot={{ r: 3 }}
+                          />
+                        ))}
+                      </AreaChart>
+                    </ResponsiveContainer>
+                  ) : (
+                    <div className="h-[384px] flex items-center justify-center text-sm text-muted-foreground">
+                      {t('market.chart.preparing')}
+                    </div>
+                  )}
                 </div>
               </div>
             )}
