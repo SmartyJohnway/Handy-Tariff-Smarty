@@ -234,9 +234,6 @@ export default function App4DataWeb() {
         <Button onClick={run} disabled={loading || (!!maintMsg && method==='POST')} size="lg">
             {loading? '執行中...':((!!maintMsg && method==='POST')? '維護中，暫停 POST':'執行請求')}
         </Button>
-        <Button asChild variant="outline" size="lg">
-            <a href="https://datawebws.usitc.gov/dataweb/swagger-ui/index.html#/" target="_blank" rel="noreferrer">查看官方 Swagger</a>
-        </Button>
       </div>
 
       <Card>
