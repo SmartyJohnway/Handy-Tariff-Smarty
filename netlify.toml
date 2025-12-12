@@ -28,6 +28,15 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
   node_bundler_config = { "format" = "esm" }
+  # Ensure data files are packaged with functions (USTR Section 301 dataset)
+  included_files = [
+    "assets/data/USTR_HTS_section301.json",
+    "assets/data/ustr_hts_section301.json",
+    "public/assets/data/USTR_HTS_section301.json",
+    "public/assets/data/ustr_hts_section301.json",
+    "dist/assets/data/USTR_HTS_section301.json",
+    "dist/assets/data/ustr_hts_section301.json",
+  ]
   
 # Redirects for API and SPA routing
 [[redirects]]
