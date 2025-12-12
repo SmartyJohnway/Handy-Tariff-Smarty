@@ -4,7 +4,6 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -12,7 +11,7 @@ export default defineConfig({
     },
   },
   server: {
-    // 固定開發埠與 host，避免自動換埠導致 Netlify 代理錯誤
+    // 強制指定 host/port，避免 Netlify dev 偵測問題
     host: true,
     port: 5174,
     strictPort: true,
@@ -20,19 +19,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        // 將主要依賴分組，有助於瀏覽器快取與減少單檔體積警告
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('react')) return 'react';
-            if (id.includes('@tanstack')) return 'tanstack';
-            if (id.includes('lucide-react')) return 'icons';
-            if (id.includes('@radix-ui')) return 'radix';
-            return 'vendor';
-          }
-        },
+        // 合併成單一 app chunk，避免分離的 React/Vendor chunk 有載入差異造成 undefined
+        manualChunks: () => 'app',
       },
     },
-    // 如仍有警告，可視需要調整警戒值
-    chunkSizeWarningLimit: 900,
+    // chunkSizeWarningLimit: 900,
   },
 });
