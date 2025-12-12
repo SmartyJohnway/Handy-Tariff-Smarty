@@ -1,4 +1,4 @@
-﻿{
+{
   "app": {
     "title": "Handy Tariff Smarty"
   },
@@ -336,7 +336,7 @@
         "quarterly": "每季"
       }
     },
-  "facetControls": {
+    "facetControls": {
       "presets": "預設組合",
       "default": "預設",
       "all": "全選",
@@ -353,13 +353,13 @@
       "publicInspectionDesc1": "正式公布前的預覽版本（Public Inspection）。",
       "publicInspectionDesc2": "可提早掌握即將發布的 HTS / 關稅變動。",
       "pdf": "PDF",
-        "pdfTitle": "pdf_url（正式 PDF）",
-        "pdfDesc1": "由 govinfo.gov 提供的正式 PDF。",
-        "pdfDesc2": "適用法律引用與合規檢閱。",
-        "companyRatesToggle": "公司稅率",
-        "companyRatesButton": "公司稅率",
-        "loadingDetail": "載入詳情中...",
-        "noDetail": "此文件沒有詳細資料。",
+      "pdfTitle": "pdf_url（正式 PDF）",
+      "pdfDesc1": "由 govinfo.gov 提供的正式 PDF。",
+      "pdfDesc2": "適用法律引用與合規檢閱。",
+      "companyRatesToggle": "公司稅率",
+      "companyRatesButton": "公司稅率",
+      "loadingDetail": "載入詳情中...",
+      "noDetail": "此文件沒有詳細資料。",
       "docRaw": "Document (Raw)",
       "searchDetailsDebug": "搜尋詳情（偵錯）"
     },
@@ -444,27 +444,27 @@
       "disabledHint": "停用提示：未來日期與已知無資料日期",
       "errorNoDetail": "無可用詳情",
       "tariffQuery": {
-      "materialMixed": "鋼鐵／鋁",
-      "materialSteel": "鋼鐵",
-      "materialAluminum": "鋁",
-      "derivative": "衍生品",
-      "chapter": "HTSUS 章節：{{chapter}}",
-      "applicableMeasures": "適用措施",
-      "sec232": "232條款",
-      "sec301": "301條款",
-      "adcvd": "反傾銷稅 / 反補貼稅",
-      "highRisk": "高風險",
-      "cachedLoaded": "已從快取載入 {{count}} 筆資料",
-      "loadError": "Tariff rules 讀取失敗：{{message}}",
-      "remoteLoaded": "已載入 {{count}} 筆資料",
-      "searchPlaceholderLoading": "載入中...",
-      "searchPlaceholder": "輸入關鍵字或 HTS（例如 copper, 0101.21.00）",
-      "filterAll": "全部",
-      "filterSteel": "鋼鐵",
-      "filterAluminum": "鋁",
-      "emptyTitle": "沒有找到結果",
-      "emptyDesc": "試試不同關鍵字，或調整篩選條件。"
-    }        
+        "materialMixed": "鋼鐵／鋁",
+        "materialSteel": "鋼鐵",
+        "materialAluminum": "鋁",
+        "derivative": "衍生品",
+        "chapter": "HTSUS 章節：{{chapter}}",
+        "applicableMeasures": "適用措施",
+        "sec232": "232條款",
+        "sec301": "301條款",
+        "adcvd": "反傾銷稅 / 反補貼稅",
+        "highRisk": "高風險",
+        "cachedLoaded": "已從快取載入 {{count}} 筆資料",
+        "loadError": "Tariff rules 讀取失敗：{{message}}",
+        "remoteLoaded": "已載入 {{count}} 筆資料",
+        "searchPlaceholderLoading": "載入中...",
+        "searchPlaceholder": "輸入關鍵字或 HTS（例如 copper, 0101.21.00）",
+        "filterAll": "全部",
+        "filterSteel": "鋼鐵",
+        "filterAluminum": "鋁",
+        "emptyTitle": "沒有找到結果",
+        "emptyDesc": "試試不同關鍵字，或調整篩選條件。"
+      }
     },
     "hts": {
       "searchLabel": "HTS 查詢",
@@ -715,7 +715,14 @@
     "emptyTitle": "沒有收藏的搜尋",
     "emptyDesc": "你還沒有儲存任何收藏搜尋，點擊星號即可加入。",
     "dialogTitle": "收藏的搜尋",
-    "dialogDesc": "管理並重新開啟已儲存的 HTS 搜尋。"
+    "dialogDesc": "管理並重新開啟已儲存的 HTS 搜尋。",
+    "addedAt": "加入日期：{{date}}",
+    "descriptionLabel": "HTS 描述：{{description}}",
+    "noteLabel": "備註：{{note}}",
+    "pendingHts": "待加入 HTS：{{hts}}",
+    "pendingDescription": "HTS 描述：{{description}}",
+    "notePlaceholder": "輸入備註（選填）",
+    "confirmAdd": "確認加入"
   },
   "tariffCalc": {
     "title": "關稅計算器",
@@ -784,8 +791,7 @@
       "noInfo": "缺少足夠資訊無法查詢聯邦公報。",
       "specialCaseError": "此文件有特殊情況：{{case}}。請直接查閱聯邦公報。"
     }
-  }
-  ,
+  },
   "common": {
     "search": "搜尋",
     "view": "檢視",
@@ -875,6 +881,52 @@
       "general": "沒有相關資料",
       "orders": "沒有命令資料",
       "documents": "沒有文件或公告"
+    }
+  },
+  "nav": {
+    "intelligence": "情報總覽",
+    "advancedTrends": "進階市場趨勢",
+    "federalRegister": "聯邦公報",
+    "federalRegister2": "聯邦預報",
+    "hts": "HTSUS 資料庫",
+    "ids": "USITC 調查搜尋",
+    "sources": "資料來源與工具"
+  },
+  "idsCard": {
+    "title": "USITC 調查搜尋",
+    "keywordPlaceholder": "關鍵字（主題/產品/國家）",
+    "countryPlaceholder": "國家",
+    "invPlaceholder": "調查號碼（例如 701-253）",
+    "orderPlaceholder": "商務部命令/案件號",
+    "loadError": "查詢失敗：{{message}}",
+    "noResults": "目前篩選條件沒有結果。",
+    "showingResults": "顯示第 {{from}}-{{to}} 筆，共 {{total}} 筆。",
+    "rawPreview": "原始資料預覽",
+    "previewItem": "預覽項目",
+    "table": {
+      "invNumber": "調查號碼",
+      "topic": "主題",
+      "phase": "階段",
+      "countries": "涉案國家",
+      "startDate": "開始日期",
+      "endDate": "結束日期"
+    },
+    "status": {
+      "all": "所有狀態",
+      "completed": "已完成",
+      "terminated": "已終止",
+      "inactive": "不活躍",
+      "active": "進行中",
+      "pendingAlj": "ALJ 審理中",
+      "notInstituted": "未立案",
+      "withdrawn": "申訴/請求撤回",
+      "preInstitution": "立案前",
+      "pendingCommission": "委員會審理中",
+      "adequacy": "充分性審查",
+      "pending": "待定",
+      "cancelled": "已取消",
+      "petitionWithdrawn": "請願/申請撤回",
+      "consolidated": "合併案件"
     }
   }
 }

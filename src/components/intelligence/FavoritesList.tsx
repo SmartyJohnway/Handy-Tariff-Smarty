@@ -59,12 +59,18 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
               {f.hts}
             </button>
             <div className="mt-1 space-y-1 text-xs">
-              <div className="text-muted-foreground">加入日期：{f.addedAt || 'N/A'}</div>
+              <div className="text-muted-foreground">
+                {tAny('favorites.addedAt', { date: f.addedAt || 'N/A' })}
+              </div>
               {f.description ? (
-                <div className="text-foreground text-sm leading-tight">{f.description}</div>
+                <div className="text-foreground text-sm leading-tight">
+                  {tAny('favorites.descriptionLabel', { description: f.description })}
+                </div>
               ) : null}
               {f.note ? (
-                <div className="text-foreground">備註：{f.note}</div>
+                <div className="text-foreground">
+                  {tAny('favorites.noteLabel', { note: f.note })}
+                </div>
               ) : null}
             </div>
           </div>
@@ -95,21 +101,25 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
         {draftFavorite && onAddFavorite ? (
           <div className="mb-4 space-y-2 rounded-xl border border-dashed border-border p-3">
             <div className="flex flex-col gap-1">
-              <div className="font-mono text-sm text-foreground">待加入 HTS：{draftFavorite.hts}</div>
+              <div className="font-mono text-sm text-foreground">
+                {tAny('favorites.pendingHts', { hts: draftFavorite.hts })}
+              </div>
               {draftFavorite.description ? (
-                <div className="text-xs text-muted-foreground leading-snug">HTS 描述：{draftFavorite.description}</div>
+                <div className="text-xs text-muted-foreground leading-snug">
+                  {tAny('favorites.pendingDescription', { description: draftFavorite.description })}
+                </div>
               ) : null}
             </div>
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
               <Input
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
-                placeholder="輸入備註（選填）"
+                placeholder={tAny('favorites.notePlaceholder')}
                 className="w-full"
               />
               <div className="flex gap-2">
                 <Button onClick={() => { onAddFavorite(note.trim()); setNote(''); onClose(); }} disabled={!draftFavorite.hts}>
-                  確認加入
+                  {tAny('favorites.confirmAdd')}
                 </Button>
               </div>
             </div>

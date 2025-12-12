@@ -21,18 +21,19 @@ import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import FederalRegisterApp from '@/apps/FederalRegister';
 import PublicInspection from '@/apps/PublicInspection';
 import { IDSCard } from '@/components/IDSCard';
+import { useTranslation } from 'react-i18next';
 
 // Keep type for context compatibility
 type Tab = 'intelligence' | 'advanced-trends' | 'query' | 'hts' | 'ids' | 'sources' | 'federal-register' | 'federal-register2' | 'dataweb' | 'verifier' | 'translation' | 'charts';
 // 顯示用 Tabs 設定（一般/開發模式）
 const NORMAL_TABS: { key: Tab; label: string; icon: React.ElementType }[] = [
-  { key: 'intelligence', label: '情報總覽', icon: BrainCircuit },
-  { key: 'advanced-trends', label: '進階市場趨勢', icon: LineChart },
-  { key: 'federal-register', label: '聯邦公報', icon: Landmark },
-  { key: 'federal-register2', label: '聯邦預報', icon: CalendarClock },  
-  { key: 'hts', label: 'HTSUS 資料庫', icon: Library },
-  { key: 'ids', label: 'USITC 調查搜尋', icon: ShieldCheck },
-  { key: 'sources', label: '資料來源與工具', icon: Combine },
+  { key: 'intelligence', label: 'nav.intelligence', icon: BrainCircuit },
+  { key: 'advanced-trends', label: 'nav.advancedTrends', icon: LineChart },
+  { key: 'federal-register', label: 'nav.federalRegister', icon: Landmark },
+  { key: 'federal-register2', label: 'nav.federalRegister2', icon: CalendarClock },  
+  { key: 'hts', label: 'nav.hts', icon: Library },
+  { key: 'ids', label: 'nav.ids', icon: ShieldCheck },
+  { key: 'sources', label: 'nav.sources', icon: Combine },
 ];
 
 const DEV_TABS: { key: Tab; label: string; icon: React.ElementType }[] = [
@@ -45,14 +46,14 @@ const DEV_TABS: { key: Tab; label: string; icon: React.ElementType }[] = [
 ];
 
 const TABS: { key: Tab; label: string; icon: React.ElementType }[] = [
-  { key: 'intelligence', label: '情報總覽', icon: ShieldCheck },
-  { key: 'advanced-trends', label: '進階市場趨勢', icon: LineChart },
-  { key: 'federal-register', label: '聯邦公報', icon: Landmark },
-  { key: 'federal-register2', label: '聯邦預報', icon: CalendarClock },   
+  { key: 'intelligence', label: 'nav.intelligence', icon: ShieldCheck },
+  { key: 'advanced-trends', label: 'nav.advancedTrends', icon: LineChart },
+  { key: 'federal-register', label: 'nav.federalRegister', icon: Landmark },
+  { key: 'federal-register2', label: 'nav.federalRegister2', icon: CalendarClock },   
   { key: 'query', label: '關稅查詢', icon: FileSearch2 },
-  { key: 'hts', label: 'HTSUS 資料庫', icon: Library },
-  { key: 'ids', label: 'USITC 調查搜尋', icon: ShieldCheck },
-  { key: 'sources', label: '資料來源與工具', icon: Combine },
+  { key: 'hts', label: 'nav.hts', icon: Library },
+  { key: 'ids', label: 'nav.ids', icon: ShieldCheck },
+  { key: 'sources', label: 'nav.sources', icon: Combine },
   { key: 'dataweb', label: 'DataWeb 驗證', icon: Network },
   { key: 'translation', label: '貨品翻譯', icon: Languages },
   { key: 'charts', label: 'shadcn 圖表示例', icon: PieChart }, 
@@ -60,6 +61,8 @@ const TABS: { key: Tab; label: string; icon: React.ElementType }[] = [
 ];
 
 function App() {
+  const { t } = useTranslation();
+  const tAny = t as (key: string, options?: any) => string;
   const { activeTab, setActiveTab } = useSearch();
   const [theme, setTheme] = React.useState(() => localStorage.getItem("theme") || "system");
   const [themeName, setThemeName] = React.useState(() => localStorage.getItem("theme_name") || "default");
@@ -162,7 +165,7 @@ function App() {
                 {displayedTabs.map(tab => (
                 <TabsTrigger key={tab.key} value={tab.key} className="whitespace-nowrap px-4 py-2 text-base">
                     <tab.icon className="mr-2 h-5 w-5" />
-                    {tab.label}
+                    {tab.label.startsWith('nav.') ? tAny(tab.label) : tab.label}
                 </TabsTrigger>
                 ))}
             </TabsList>

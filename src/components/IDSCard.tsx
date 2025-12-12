@@ -7,6 +7,7 @@ import { Skeleton } from './ui/skeleton';
 import { Loader2, Search } from 'lucide-react';
 import type { FlatInvestigation } from '@/types/usitc-schema';
 import CaseDashboardRawMapforuser from './CaseDashboardRawMapforuser';
+import { useTranslation } from 'react-i18next';
 
 interface SearchResult {
   metadata: {
@@ -21,24 +22,26 @@ interface SearchResult {
 }
 
 const STATUS_OPTIONS = [
-  '',
-  'Completed',
-  'Terminated',
-  'Inactive',
-  'Active',
-  'Pending before the ALJ',
-  'Not Instituted',
-  'Complaint/Request Withdrawn',
-  'Pre-institution',
-  'Pending before the Commission',
-  'Adequacy',
-  'Pending',
-  'Cancelled',
-  'Petition/Request Withdrawn',
-  'Consolidated',
+  { value: '', labelKey: 'idsCard.status.all' },
+  { value: 'Completed', labelKey: 'idsCard.status.completed' },
+  { value: 'Terminated', labelKey: 'idsCard.status.terminated' },
+  { value: 'Inactive', labelKey: 'idsCard.status.inactive' },
+  { value: 'Active', labelKey: 'idsCard.status.active' },
+  { value: 'Pending before the ALJ', labelKey: 'idsCard.status.pendingAlj' },
+  { value: 'Not Instituted', labelKey: 'idsCard.status.notInstituted' },
+  { value: 'Complaint/Request Withdrawn', labelKey: 'idsCard.status.withdrawn' },
+  { value: 'Pre-institution', labelKey: 'idsCard.status.preInstitution' },
+  { value: 'Pending before the Commission', labelKey: 'idsCard.status.pendingCommission' },
+  { value: 'Adequacy', labelKey: 'idsCard.status.adequacy' },
+  { value: 'Pending', labelKey: 'idsCard.status.pending' },
+  { value: 'Cancelled', labelKey: 'idsCard.status.cancelled' },
+  { value: 'Petition/Request Withdrawn', labelKey: 'idsCard.status.petitionWithdrawn' },
+  { value: 'Consolidated', labelKey: 'idsCard.status.consolidated' },
 ];
 
 export const IDSCard: React.FC = () => {
+  const { t } = useTranslation();
+  const tAny = t as (key: string, options?: any) => string;
   const [keyword, setKeyword] = useState('');
   const [country, setCountry] = useState('');
   const [status, setStatus] = useState('');
@@ -132,19 +135,19 @@ export const IDSCard: React.FC = () => {
   return (
     <Card className="p-4 md:p-6 space-y-4">
       <CardHeader className="p-0">
-        <CardTitle className="text-lg">USITC Investigation Search</CardTitle>
+        <CardTitle className="text-lg">{tAny('idsCard.title')}</CardTitle>
       </CardHeader>
       <CardContent className="p-0 space-y-4">
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <Input
-            placeholder="Keyword (topic/product/country)"
+            placeholder={tAny('idsCard.keywordPlaceholder')}
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
             onKeyDown={handleKeyPress}
             disabled={isFetching}
           />
           <Input
-            placeholder="Country"
+            placeholder={tAny('idsCard.countryPlaceholder')}
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             onKeyDown={handleKeyPress}
@@ -157,20 +160,20 @@ export const IDSCard: React.FC = () => {
             disabled={isFetching}
           >
             {STATUS_OPTIONS.map((opt) => (
-              <option key={opt || 'all'} value={opt}>
-                {opt || 'All statuses'}
+              <option key={opt.value || 'all'} value={opt.value}>
+                {tAny(opt.labelKey)}
               </option>
             ))}
           </select>
           <Input
-            placeholder="Inv. Number (e.g., 701-253)"
+            placeholder={tAny('idsCard.invPlaceholder')}
             value={officialId}
             onChange={(e) => setOfficialId(e.target.value)}
             onKeyDown={handleKeyPress}
             disabled={isFetching}
           />
           <Input
-            placeholder="Commerce Order/Case Number"
+            placeholder={tAny('idsCard.orderPlaceholder')}
             value={orderNumber}
             onChange={(e) => setOrderNumber(e.target.value)}
             onKeyDown={handleKeyPress}
@@ -183,7 +186,7 @@ export const IDSCard: React.FC = () => {
             ) : (
               <Search className="mr-2 h-4 w-4" />
             )}
-            Search
+            {tAny('common.search')}
           </Button>
         </div>          
         </div>
@@ -198,36 +201,42 @@ export const IDSCard: React.FC = () => {
           )}
           {isError && !isFetching && (
             <div className="text-sm text-destructive">
-              Failed to load search results. {error?.message}
+              {tAny('idsCard.loadError', { message: error?.message || '' })}
             </div>
           )}
           {!isFetching && searchResult && searchResult.data.length === 0 && (
             <div className="text-sm text-muted-foreground">
-              No results found for current filters.
+              {tAny('idsCard.noResults')}
             </div>
           )}
           {searchResult && searchResult.data.length > 0 && (
             <div className="space-y-3">
               <div className="text-sm text-muted-foreground">
-                Showing{' '}
-                {searchResult.metadata.totalItems > searchResult.metadata.pageSize
-                  ? `${(searchResult.metadata.currentPage - 1) * searchResult.metadata.pageSize + 1}-${Math.min(
-                      searchResult.metadata.currentPage * searchResult.metadata.pageSize,
-                      searchResult.metadata.totalItems
-                    )}`
-                  : searchResult.metadata.totalItems}{' '}
-                of {searchResult.metadata.totalItems} results.
+                {tAny('idsCard.showingResults', {
+                  from:
+                    searchResult.metadata.totalItems > searchResult.metadata.pageSize
+                      ? (searchResult.metadata.currentPage - 1) * searchResult.metadata.pageSize + 1
+                      : searchResult.metadata.totalItems,
+                  to:
+                    searchResult.metadata.totalItems > searchResult.metadata.pageSize
+                      ? Math.min(
+                          searchResult.metadata.currentPage * searchResult.metadata.pageSize,
+                          searchResult.metadata.totalItems
+                        )
+                      : searchResult.metadata.totalItems,
+                  total: searchResult.metadata.totalItems,
+                })}
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b text-left text-xs uppercase text-muted-foreground">
-                      <th className="py-2 pr-3">Inv. Number</th>
-                      <th className="py-2 pr-3">Topic</th>
-                      <th className="py-2 pr-3">Phase</th>
-                      <th className="py-2 pr-3">Countries</th>
-                      <th className="py-2 pr-3">Start Date</th>
-                      <th className="py-2 pr-3">End Date</th>
+                      <th className="py-2 pr-3">{tAny('idsCard.table.invNumber')}</th>
+                      <th className="py-2 pr-3">{tAny('idsCard.table.topic')}</th>
+                      <th className="py-2 pr-3">{tAny('idsCard.table.phase')}</th>
+                      <th className="py-2 pr-3">{tAny('idsCard.table.countries')}</th>
+                      <th className="py-2 pr-3">{tAny('idsCard.table.startDate')}</th>
+                      <th className="py-2 pr-3">{tAny('idsCard.table.endDate')}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -261,10 +270,10 @@ export const IDSCard: React.FC = () => {
                     onClick={() => setPage((p) => Math.max(p - 1, 1))}
                     disabled={page <= 1 || isFetching}
                   >
-                    Previous
+                    {tAny('common.prev')}
                   </Button>
                   <span className="text-sm text-muted-foreground">
-                    Page {searchResult.metadata.currentPage} of {searchResult.metadata.totalPages}
+                    {tAny('common.pageOf', { current: searchResult.metadata.currentPage, total: searchResult.metadata.totalPages })}
                   </span>
                   <Button
                     variant="outline"
@@ -272,7 +281,7 @@ export const IDSCard: React.FC = () => {
                     onClick={() => setPage((p) => Math.min(p + 1, searchResult.metadata.totalPages))}
                     disabled={page >= searchResult.metadata.totalPages || isFetching}
                   >
-                    Next
+                    {tAny('common.next')}
                   </Button>
                 </div>
               )}
@@ -280,9 +289,9 @@ export const IDSCard: React.FC = () => {
               {searchResult.rawData && searchResult.rawData.length > 0 && (
                 <div className="space-y-3 rounded-md border p-3">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                    <div className="text-sm font-semibold">Raw data preview</div>
+                    <div className="text-sm font-semibold">{tAny('idsCard.rawPreview')}</div>
                     <div className="flex items-center gap-2 text-sm">
-                      <span className="text-muted-foreground">Preview item</span>
+                      <span className="text-muted-foreground">{tAny('idsCard.previewItem')}</span>
                       <select
                         className="h-9 rounded-md border border-input bg-background px-2 text-sm"
                         value={selectedRawIdx}
