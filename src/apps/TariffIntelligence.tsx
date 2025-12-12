@@ -78,9 +78,11 @@ export function TariffIntelligence() {
   const { htsSearchTerm, htsNavToken } = useSearch();
   const lastProcessedToken = React.useRef(0);
 
-  const [favorites, setFavorites] = useState<{ hts: string; note: string }[]>([]);
+  type FavoriteItem = { hts: string; addedAt: string; note?: string; description?: string };
+  const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
   const [queryHts, setQueryHts] = useState('');
   const [favoritesOpen, setFavoritesOpen] = useState(false);
+  const [pendingFavorite, setPendingFavorite] = useState<{ hts: string; description?: string } | null>(null);
   
   const { addTrailItem } = useResearchTrail();
 
@@ -147,11 +149,25 @@ export function TariffIntelligence() {
     }
   }, [adcvdQuery.error]);
 
+  const normalizeFavorites = (raw: any): FavoriteItem[] => {
+    if (!Array.isArray(raw)) return [];
+    return raw
+      .map((item) => {
+        const hts = typeof item?.hts === 'string' ? item.hts : '';
+        if (!hts) return null;
+        const note = typeof item?.note === 'string' ? item.note : '';
+        const addedAt = typeof item?.addedAt === 'string' ? item.addedAt : note;
+        const description = typeof item?.description === 'string' ? item.description : undefined;
+        return { hts, addedAt: addedAt || '', note: item?.addedAt ? note : '', description };
+      })
+      .filter(Boolean) as FavoriteItem[];
+  };
+
   // Fetch favorites from local storage on mount
   useEffect(() => {
     try {
       const storedFavorites = JSON.parse(localStorage.getItem('tariff_favorites') || '[]');
-      setFavorites(storedFavorites);
+      setFavorites(normalizeFavorites(storedFavorites));
     } catch (e) {
       console.error('Failed to save favorites to localStorage', e);
     }
@@ -242,7 +258,7 @@ export function TariffIntelligence() {
   }, [companyDocNumber, companyRatesQuery.data, companyRatesQuery.error, companyRatesQuery.isFetching]);
 
   // --- Favorite Functions (Unchanged) ---
-  function saveFavorites(newFavorites: { hts: string; note: string }[]) {
+  function saveFavorites(newFavorites: FavoriteItem[]) {
     setFavorites(newFavorites);
     try {
       localStorage.setItem('tariff_favorites', JSON.stringify(newFavorites));
@@ -251,10 +267,25 @@ export function TariffIntelligence() {
     }
   }
 
-  function addFavorite() {
-    if (!activeHts || favorites.some(f => f.hts === activeHts)) return;
-    const newFavorites = [...favorites, { hts: activeHts, note: `Added on ${new Date().toLocaleDateString()}` }];
+  function addFavorite(note: string) {
+    if (!pendingFavorite) return;
+    if (favorites.some(f => f.hts === pendingFavorite.hts)) return;
+    const trimmedNote = (note || '').trim();
+    const description =
+      typeof pendingFavorite.description === 'string'
+        ? pendingFavorite.description
+        : undefined;
+    const newFavorites = [
+      ...favorites,
+      {
+        hts: pendingFavorite.hts,
+        addedAt: new Date().toLocaleDateString(),
+        note: trimmedNote,
+        description,
+      },
+    ];
     saveFavorites(newFavorites);
+    setPendingFavorite(null);
   }
 
   function removeFavorite(htsToRemove: string) {
@@ -337,7 +368,21 @@ export function TariffIntelligence() {
               />
             </div>
             <div className="flex items-center gap-3">
-              <Button size="sm" variant="outline" onClick={addFavorite} disabled={!activeHts} className="h-10">
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => {
+                  if (!activeHts) return;
+                  const description =
+                    typeof (tariffData as any)?.raw?.description === 'string'
+                      ? (tariffData as any).raw.description
+                      : '';
+                  setPendingFavorite({ hts: activeHts, description });
+                  setFavoritesOpen(true);
+                }}
+                disabled={!activeHts}
+                className="h-10"
+              >
                 <Star className="mr-2 h-4 w-4" />
                 {t('tariff.addFavorite')}
               </Button>
@@ -439,10 +484,12 @@ export function TariffIntelligence() {
       />
       <FavoritesModal
         open={favoritesOpen}
-        onClose={() => setFavoritesOpen(false)}
+        onClose={() => { setFavoritesOpen(false); setPendingFavorite(null); }}
         favorites={favorites}
         onSelect={handleSelectFavorite}
         onRemove={removeFavorite}
+        draftFavorite={pendingFavorite}
+        onAddFavorite={(note) => addFavorite(note)}
       />
     </div>
   );

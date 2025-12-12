@@ -7,7 +7,6 @@ import { Skeleton } from './ui/skeleton';
 import { Loader2, Search } from 'lucide-react';
 import type { FlatInvestigation } from '@/types/usitc-schema';
 import CaseDashboardRawMapforuser from './CaseDashboardRawMapforuser';
-import CaseDashboardRawMapfordev from './CaseDashboardRawMapfordev';
 
 interface SearchResult {
   metadata: {
@@ -45,7 +44,6 @@ export const IDSCard: React.FC = () => {
   const [status, setStatus] = useState('');
   const [officialId, setOfficialId] = useState('');
   const [orderNumber, setOrderNumber] = useState('');
-  const [showRaw, setShowRaw] = useState(false);
   const [page, setPage] = useState(1);
   const [selectedRawIdx, setSelectedRawIdx] = useState(0);
   const [submitted, setSubmitted] = useState({
@@ -79,8 +77,7 @@ export const IDSCard: React.FC = () => {
       submitted.status,
       submitted.officialId,
       submitted.orderNumber,
-      page,
-      showRaw,
+      page
     ],
     queryFn: async () => {
       const params = new URLSearchParams({
@@ -138,7 +135,7 @@ export const IDSCard: React.FC = () => {
         <CardTitle className="text-lg">USITC Investigation Search</CardTitle>
       </CardHeader>
       <CardContent className="p-0 space-y-4">
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <Input
             placeholder="Keyword (topic/product/country)"
             value={keyword}
@@ -179,19 +176,7 @@ export const IDSCard: React.FC = () => {
             onKeyDown={handleKeyPress}
             disabled={isFetching}
           />
-        </div>
-
         <div className="flex justify-end">
-          <label className="mr-3 inline-flex items-center gap-2 text-sm text-muted-foreground">
-            <input
-              type="checkbox"
-              className="h-4 w-4"
-              checked={showRaw}
-              onChange={(e) => setShowRaw(e.target.checked)}
-              disabled={isFetching}
-            />
-            Show raw tree
-          </label>
           <Button onClick={handleSearch} disabled={isFetching}>
             {isFetching ? (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -200,6 +185,7 @@ export const IDSCard: React.FC = () => {
             )}
             Search
           </Button>
+        </div>          
         </div>
 
         <div className="relative min-h-[200px]">
@@ -314,38 +300,14 @@ export const IDSCard: React.FC = () => {
                     </div>
                   </div>
 
-                  {showRaw && (
-                    <div className="space-y-2">
-                      {searchResult.rawData.map((item, idx) => (
-                        <details key={idx} className="rounded border border-muted p-2">
-                          <summary className="cursor-pointer text-sm font-semibold">
-                            {item?.official_investigation_number ||
-                              item?.['Investigation Number'] ||
-                              item?.investigation_id ||
-                              'Item'}
-                          </summary>
-                          <div className="mt-2">
-                            <TreeView data={item} depth={0} />
-                          </div>
-                        </details>
-                      ))}
-                    </div>
-                  )}
-
                   {selectedRaw && (
                     <div className="space-y-3">
-                      <div className="rounded-lg bg-slate-50 p-3 border border-slate-200">
-                        <CaseDashboardRawMapfordev raw={selectedRaw} />
-                      </div>
-                      <div className="rounded-lg bg-slate-50 p-3 border border-slate-200">
+
                         <CaseDashboardRawMapforuser raw={selectedRaw} />
-                      </div>
+
                     </div>
                   )}
                 </div>
-              )}
-              {!searchResult.rawData && showRaw && (
-                <div className="text-xs text-muted-foreground">Raw data 尚未載入，請重新搜尋。</div>
               )}
             </div>
           )}
@@ -354,46 +316,3 @@ export const IDSCard: React.FC = () => {
     </Card>
   );
 }
-
-const INDENT = 12;
-
-const TreeView: React.FC<{ data: any; depth: number }> = ({ data, depth }) => {
-  if (data === null || data === undefined) {
-    return <div style={{ paddingLeft: depth * INDENT }} className="text-xs text-muted-foreground">null</div>;
-  }
-
-  if (typeof data !== 'object') {
-    return (
-      <div style={{ paddingLeft: depth * INDENT }} className="text-xs">
-        {String(data)}
-      </div>
-    );
-  }
-
-  if (Array.isArray(data)) {
-    return (
-      <div style={{ paddingLeft: depth * INDENT }} className="space-y-1">
-        {data.map((item, idx) => (
-          <details key={idx} className="rounded border border-muted/50 p-1">
-            <summary className="text-xs font-semibold">[{idx}]</summary>
-            <TreeView data={item} depth={depth + 1} />
-          </details>
-        ))}
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ paddingLeft: depth * INDENT }} className="space-y-1">
-      {Object.entries(data).map(([key, value]) => (
-        <details key={key} className="rounded border border-muted/50 p-1">
-          <summary className="text-xs font-semibold">{key}</summary>
-          <TreeView data={value} depth={depth + 1} />
-        </details>
-      ))}
-    </div>
-  );
-};
-
-
-

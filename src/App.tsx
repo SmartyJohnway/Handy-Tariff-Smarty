@@ -1,4 +1,4 @@
-﻿﻿import React from 'react';
+import React from 'react';
 import TariffQuery from '@/apps/TariffQuery';
 import HtsDatabase from '@/apps/HtsDatabase';
 import { MarketTrendsProvider } from '@/context/MarketTrendsContext';
@@ -20,9 +20,10 @@ import { // 替換為新的圖示
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import FederalRegisterApp from '@/apps/FederalRegister';
 import PublicInspection from '@/apps/PublicInspection';
+import { IDSCard } from '@/components/IDSCard';
 
 // Keep type for context compatibility
-type Tab = 'intelligence' | 'advanced-trends' | 'query' | 'hts' | 'sources' | 'federal-register' | 'federal-register2' | 'dataweb' | 'verifier' | 'translation' | 'charts';
+type Tab = 'intelligence' | 'advanced-trends' | 'query' | 'hts' | 'ids' | 'sources' | 'federal-register' | 'federal-register2' | 'dataweb' | 'verifier' | 'translation' | 'charts';
 // 顯示用 Tabs 設定（一般/開發模式）
 const NORMAL_TABS: { key: Tab; label: string; icon: React.ElementType }[] = [
   { key: 'intelligence', label: '情報總覽', icon: BrainCircuit },
@@ -30,6 +31,7 @@ const NORMAL_TABS: { key: Tab; label: string; icon: React.ElementType }[] = [
   { key: 'federal-register', label: '聯邦公報', icon: Landmark },
   { key: 'federal-register2', label: '聯邦預報', icon: CalendarClock },  
   { key: 'hts', label: 'HTSUS 資料庫', icon: Library },
+  { key: 'ids', label: 'USITC 調查搜尋', icon: ShieldCheck },
   { key: 'sources', label: '資料來源與工具', icon: Combine },
 ];
 
@@ -49,6 +51,7 @@ const TABS: { key: Tab; label: string; icon: React.ElementType }[] = [
   { key: 'federal-register2', label: '聯邦預報', icon: CalendarClock },   
   { key: 'query', label: '關稅查詢', icon: FileSearch2 },
   { key: 'hts', label: 'HTSUS 資料庫', icon: Library },
+  { key: 'ids', label: 'USITC 調查搜尋', icon: ShieldCheck },
   { key: 'sources', label: '資料來源與工具', icon: Combine },
   { key: 'dataweb', label: 'DataWeb 驗證', icon: Network },
   { key: 'translation', label: '貨品翻譯', icon: Languages },
@@ -58,12 +61,9 @@ const TABS: { key: Tab; label: string; icon: React.ElementType }[] = [
 
 function App() {
   const { activeTab, setActiveTab } = useSearch();
-  const [devMode, setDevMode] = React.useState(false);
   const [theme, setTheme] = React.useState(() => localStorage.getItem("theme") || "system");
   const [themeName, setThemeName] = React.useState(() => localStorage.getItem("theme_name") || "default");
-  const displayedTabs = devMode ? DEV_TABS : NORMAL_TABS;
-  const filteredTabs = React.useMemo(() => (displayedTabs || []).filter(t => t.key !== 'federal-register2'), [displayedTabs]);
-  // Always expose the new Federal Register page
+  const displayedTabs = NORMAL_TABS;
 
   React.useEffect(() => {
     const root = window.document.documentElement;
@@ -114,6 +114,8 @@ function App() {
         return <TariffQuery />;
       case 'hts':
         return <HtsDatabase />;
+      case 'ids':
+        return <IDSCard />;
       case 'sources':
         return <Section232SearchApp />;
       case 'federal-register':
@@ -154,7 +156,7 @@ function App() {
           </div>
         </header>
 
-        <Tabs value={activeTab} onValueChange={(value: string) => { const v = value as Tab; setActiveTab(v); if (v === 'intelligence') setDevMode(false); }} className="w-full">
+        <Tabs value={activeTab} onValueChange={(value: string) => { const v = value as Tab; setActiveTab(v); }} className="w-full">
           <div className="w-full pb-2">
             <TabsList className="flex flex-wrap h-auto items-center justify-center -mb-px">
                 {displayedTabs.map(tab => (
@@ -177,7 +179,7 @@ function App() {
           <p className="mt-1">本系統僅供參考，最終解釋請以美國官方公告為準。</p>
           <div className="mt-2 flex items-center justify-center gap-2">
             <span>Author</span>
-            <button onClick={() => { setDevMode(true); setActiveTab('charts'); }} className="cursor-pointer" title="Open Dev Mode">:</button>
+            <span title="Nice to meet you here">:</span>
             <span>Johnway</span>
             <DialogTrigger asChild>
               <button

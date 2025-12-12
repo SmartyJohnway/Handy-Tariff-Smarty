@@ -16,6 +16,7 @@ type Tab =
   | 'advanced-trends'
   | 'query'
   | 'hts'
+  | 'ids'
   | 'sources'
   | 'federal-register'
   | 'federal-register2'
@@ -49,32 +50,32 @@ interface SearchProviderProps {
   children: ReactNode;
 }
 
+const PUBLIC_TABS: Tab[] = [
+  'intelligence',
+  'advanced-trends',
+  'hts',
+  'ids',
+  'sources',
+  'federal-register',
+  'federal-register2',
+];
+
+const sanitizeTab = (tab: Tab): Tab => (PUBLIC_TABS.includes(tab) ? tab : 'intelligence');
+
 export const SearchProvider = ({ children }: SearchProviderProps) => {
-  const [activeTab, setActiveTab] = useState<Tab>(() => {
+  const [activeTab, setActiveTabState] = useState<Tab>(() => {
     if (typeof window !== 'undefined') {
       try {
         const params = new URLSearchParams(window.location.search);
         const t = params.get('tab');
-        const allowed: Tab[] = [
-          'intelligence',
-          'advanced-trends',
-          'query',
-          'hts',
-          'sources',
-          'federal-register',
-          'federal-register2',
-          'dataweb',
-          'verifier',
-          'translation',
-          'charts',
-        ];
-        if (t && (allowed as string[]).includes(t)) return t as Tab;
+        if (t && (PUBLIC_TABS as string[]).includes(t)) return t as Tab;
       } catch {
         // ignore URL parsing errors
       }
     }
     return 'intelligence';
   });
+  const setActiveTab = (tab: Tab) => setActiveTabState(sanitizeTab(tab));
   const [htsSearchTerm, setHtsSearchTerm] = useState('');
   const [htsNavToken, setHtsNavToken] = useState(0);
   const [htsResults, setHtsResults] = useState<HtsItem[]>([]);
