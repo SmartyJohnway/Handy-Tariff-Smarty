@@ -84,7 +84,10 @@ const candidateRoots = (): string[] => {
 const firstExistingPath = (...segments: string[]): string | null => {
   for (const root of candidateRoots()) {
     const p = path.join(root, ...segments);
-    try { require('fs').accessSync(p); return p; } catch {}
+    try {
+      require('fs').accessSync(p);
+      return p;
+    } catch {}
   }
   return null;
 };
@@ -95,7 +98,12 @@ const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 export async function loadUstr301(): Promise<UstrParsed[] | null> {
   const now = Date.now();
   if (cache && (now - cache.timestamp) < CACHE_TTL_MS) return cache.rows;
-  const p = firstExistingPath('assets', 'data', 'USTR_HTS_section301.json');
+  // Try multiple locations / casings: assets/..., public/assets/..., and lowercase file name.
+  const p =
+    firstExistingPath('assets', 'data', 'USTR_HTS_section301.json') ||
+    firstExistingPath('assets', 'data', 'ustr_hts_section301.json') ||
+    firstExistingPath('public', 'assets', 'data', 'USTR_HTS_section301.json') ||
+    firstExistingPath('public', 'assets', 'data', 'ustr_hts_section301.json');
   if (!p) return null;
   try {
     const raw = await fs.readFile(p, 'utf8');
