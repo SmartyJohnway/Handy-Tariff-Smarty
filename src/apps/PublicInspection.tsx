@@ -2,10 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
 
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
-import { Switch } from "@/components/ui/switch";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
 import { CollapsibleJson } from "@/components/ui/CollapsibleJson";
 import { Calendar } from "@/components/ui/calendar";
@@ -43,9 +41,9 @@ export default function PublicInspection() {
   const { t } = useTranslation();
   const [selected, setSelected] = React.useState<Date>(new Date());
   const date = React.useMemo(() => toYMDLocal(selected), [selected]);
-  const [debugMode, setDebugMode] = React.useState<boolean>(false);
+  const debugMode = false;
   const DEFAULT_BASE_URI = "https://www.federalregister.gov/api/v1";
-  const [baseUri, setBaseUri] = React.useState<string>(DEFAULT_BASE_URI);
+  const baseUri = DEFAULT_BASE_URI;
 
   const [error, setError] = React.useState<string | null>(null);
   const [docs, setDocs] = React.useState<PiDoc[]>([]);
@@ -72,19 +70,36 @@ export default function PublicInspection() {
   const toTimestamp = React.useCallback((value?: string | null): number => {
     if (!value) return 0;
     const normalized = value.replace(/\s+/g, " ");
-    const isoMatch = normalized.match(/^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2}:\d{2})\s*([+-]\d{2}:?\d{2})?$/);
+    const parsedMs = Date.parse(normalized);
+    if (!Number.isNaN(parsedMs)) return parsedMs;
+    const isoMatch = normalized.match(
+      /^(\d{4}-\d{2}-\d{2})[ T](\d{2}):(\d{2})(?::(\d{2})(?:\.(\d+))?)?(?:\s*([+-]\d{2}:?\d{2})?)?$/
+    );
     if (isoMatch) {
-      const offset = isoMatch[3]
-        ? isoMatch[3].length === 5
-          ? isoMatch[3]
-          : `${isoMatch[3].slice(0, 3)}:${isoMatch[3].slice(3)}`
+      const offset = isoMatch[6]
+        ? isoMatch[6].length === 5
+          ? isoMatch[6]
+          : `${isoMatch[6].slice(0, 3)}:${isoMatch[6].slice(3)}`
         : "Z";
-      const d = new Date(`${isoMatch[1]}T${isoMatch[2]}${offset}`);
+      const seconds = isoMatch[4] || "00";
+      const milliseconds = isoMatch[5] ? `.${isoMatch[5]}` : "";
+      const d = new Date(`${isoMatch[1]}T${isoMatch[2]}:${isoMatch[3]}:${seconds}${milliseconds}${offset}`);
       return isNaN(d.getTime()) ? 0 : d.getTime();
     }
-    const parsed = new Date(normalized);
-    return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+    return 0;
   }, []);
+
+  const toLocalYmdHm = React.useCallback((value?: string | null): string | null => {
+    const ts = toTimestamp(value);
+    if (!ts) return null;
+    const d = new Date(ts);
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    const hh = String(d.getHours()).padStart(2, "0");
+    const mm = String(d.getMinutes()).padStart(2, "0");
+    return `${y}-${m}-${day} ${hh}:${mm}`;
+  }, [toTimestamp]);
 
   const loadDocumentDetails = React.useCallback(
     async (docnum: string) => {
@@ -132,7 +147,7 @@ export default function PublicInspection() {
     setDocs(list);
     setRaw(payload);
     setSearchDetails(null);
-    const pickUpdated = (d: any) => d?.page_views?.last_updated || null;
+    const pickUpdated = (d: any) => d?.filed_at || null;
     const latestFor = (pred: (d: PiDoc) => boolean) => {
       let bestTs = 0;
       let bestStr: string | null = null;
@@ -147,10 +162,10 @@ export default function PublicInspection() {
       return bestStr;
     };
     setSpecialUpdatedAt(
-      latestFor((d) => String(d.filing_type || "").toLowerCase().includes("special")) || null
+      toLocalYmdHm(latestFor((d) => String(d.filing_type || "").toLowerCase().includes("special")))
     );
     setRegularUpdatedAt(
-      latestFor((d) => !String(d.filing_type || "").toLowerCase().includes("special")) || null
+      toLocalYmdHm(latestFor((d) => !String(d.filing_type || "").toLowerCase().includes("special")))
     );
     setError(null);
     setNoDataSet((prev) => {
@@ -249,12 +264,6 @@ export default function PublicInspection() {
             {date}
           </div>
           <h2 className="text-xl font-semibold">{t("fr.pi.title")}</h2>
-        </div>
-        <div className="flex items-center gap-2 text-sm">
-          <Label htmlFor="pi-switch-debug" className="text-xs">
-            {t("fr.pi.debug")}
-          </Label>
-          <Switch id="pi-switch-debug" checked={debugMode} onCheckedChange={(v: boolean) => setDebugMode(Boolean(v))} />
         </div>
       </div>
 

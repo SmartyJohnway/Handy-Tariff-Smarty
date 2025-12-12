@@ -8,7 +8,6 @@ import { Input } from '@/components/ui/Input';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/Button';
 import { useQueryClient } from '@tanstack/react-query';
 import { formatExcerpt, NormalizedFRDoc } from '@/lib/frNormalize';
@@ -51,7 +50,7 @@ export function RelatedFRCard({ hts, rawHts, defaultPerPage = 5 }: { hts: string
   const [perPage, setPerPage] = React.useState<number>(defaultPerPage);
   const [customKeyword, setCustomKeyword] = React.useState<string>('');
   // Fixed to TS endpoints; mode selector removed
-  const [debug, setDebug] = React.useState<boolean>(false);
+  const debug = false;
 
   const searchTerm = React.useMemo(
     () => {
@@ -153,10 +152,6 @@ export function RelatedFRCard({ hts, rawHts, defaultPerPage = 5 }: { hts: string
                 {[5, 10, 20].map(n => (<SelectItem key={n} value={String(n)}>{n}</SelectItem>))}
               </SelectContent>
             </Select>
-          </div>
-          <div className="flex items-center gap-2">
-            <Checkbox id="frcard-debug" checked={debug} onCheckedChange={(checked: boolean) => setDebug(Boolean(checked))} />
-            <Label htmlFor="frcard-debug" className="text-xs font-normal">{tAny('relatedFr.debug')}</Label>
           </div>
         </div>
         <div className="text-xs text-muted-foreground mb-2">

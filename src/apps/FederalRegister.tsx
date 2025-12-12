@@ -114,7 +114,10 @@ const [pendingSuggested, setPendingSuggested] = React.useState<{ slug: string; t
   React.useEffect(() => {
     setUseAggregated(true);
     setSelectedFacets(ALL_FACETS);
-  }, [setUseAggregated, setSelectedFacets, ALL_FACETS]);
+    // 強制關閉 debug 並重置 base URI，避免前端曝光除錯模式
+    setDebugMode(false);
+    setBaseUri(DEFAULT_BASE_URI);
+  }, [setUseAggregated, setSelectedFacets, ALL_FACETS, setDebugMode, setBaseUri, DEFAULT_BASE_URI]);
 
   const idToSlugMap = React.useMemo(() => {
     const map: Record<number, string> = {};
@@ -699,10 +702,6 @@ const [pendingSuggested, setPendingSuggested] = React.useState<{ slug: string; t
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-semibold">{t('fr.title')}</h2>
-        <div className="flex items-center gap-2 text-sm">
-           <Label htmlFor="fr-switch-debug" className="text-xs">{t('fr.debugMode')}</Label>
-           <Switch id="fr-switch-debug" checked={debugMode} onCheckedChange={(v: boolean) => { const on = Boolean(v); setDebugMode(on); scheduleSearch(0); }} />
-      </div>
     </div>
 
 

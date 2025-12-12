@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Slider } from '@/components/ui/slider';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -1283,7 +1282,13 @@ export const MarketTrendsChart: FC<MarketTrendsChartProps> = ({ htsCode, default
                 <div className="flex items-center gap-2">
                 <Label>{t('market.chart.period')}</Label>
                 <div className="flex items-center gap-2 rounded-md border p-2">
-                  <Checkbox id="ytd" checked={ytd} onCheckedChange={(checked: boolean) => setPeriod({ ...period, ytd: Boolean(checked) })} />
+                  <input
+                    id="ytd"
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-muted text-primary focus:ring-2 focus:ring-offset-0"
+                    checked={ytd}
+                    onChange={(e) => setPeriod({ ...period, ytd: e.target.checked })}
+                  />
                   <Label htmlFor="ytd" className="text-sm">{t('market.chart.ytd')}</Label>
                   <Slider
                     value={[historyYears]}
@@ -1299,7 +1304,13 @@ export const MarketTrendsChart: FC<MarketTrendsChartProps> = ({ htsCode, default
                 <div className="flex items-center gap-2">
                 <Label>{t('market.chart.breakout')}</Label>
                 <div className="flex items-center gap-2 rounded-md border p-2">
-                  <Checkbox id="breakout" checked={breakout} onCheckedChange={(checked: boolean) => setBreakoutState({ ...breakoutState, enabled: Boolean(checked) })} />
+                  <input
+                    id="breakout"
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-muted text-primary focus:ring-2 focus:ring-offset-0"
+                    checked={breakout}
+                    onChange={(e) => setBreakoutState({ ...breakoutState, enabled: e.target.checked })}
+                  />
                   <Label htmlFor="breakout" className="text-sm">{t('market.chart.topN')}</Label>
                   <Input
                     type="number"
@@ -1333,10 +1344,6 @@ export const MarketTrendsChart: FC<MarketTrendsChartProps> = ({ htsCode, default
   
               <Button size="sm" variant="glass" onClick={exportCsv}>{t('market.chart.exportCsv')}</Button>
             <Button size="sm" variant="glass" onClick={exportRunReportJson}>{t('market.chart.exportJson', { metric: getMetricLabel(metric) })}</Button>
-              <div className="flex items-center space-x-2 ml-2">
-                <Checkbox id="diagnostic-mode" checked={diagnostic} onCheckedChange={(checked: boolean) => setDiagnostic(Boolean(checked))} />
-                <Label htmlFor="diagnostic-mode" className="text-xs font-normal">{t('market.chart.diagnostic')}</Label>
-              </div>            
               {(adapterMode || adapterCache) && (
                 <span className="text-[11px] px-2 py-1 rounded-full bg-muted text-muted-foreground">{adapterMode}{adapterCache?` P ${adapterCache}`:''}</span>
               )}
