@@ -885,12 +885,12 @@
   },
   "nav": {
     "intelligence": "情報總覽",
-    "advancedTrends": "進階市場趨勢",
+    "advancedTrends": "市場趨勢",
     "federalRegister": "聯邦公報",
     "federalRegister2": "聯邦預報",
-    "hts": "HTSUS 資料庫",
-    "ids": "USITC 調查搜尋",
-    "sources": "資料來源與工具"
+    "hts": "HTS資料庫",
+    "ids": "調查搜尋",
+    "sources": "資料來源"
   },
   "idsCard": {
     "title": "USITC 調查搜尋",

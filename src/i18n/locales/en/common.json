@@ -884,13 +884,13 @@
     }
   },
   "nav": {
-    "intelligence": "Intelligence Overview",
-    "advancedTrends": "Advanced Market Trends",
+    "intelligence": "Tariff Intelligence",
+    "advancedTrends": "Market Trends",
     "federalRegister": "Federal Register",
-    "federalRegister2": "Federal Forecast",
-    "hts": "HTSUS Database",
-    "ids": "USITC Investigations",
-    "sources": "Data Sources & Tools"
+    "federalRegister2": "Public Inspection",
+    "hts": "HTS Database",
+    "ids": "Investigations",
+    "sources": "Data Sources"
   },
   "idsCard": {
     "title": "USITC Investigation Search",
