@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 type UstrRaw = {
   HTS_id: number | string;
@@ -70,23 +71,33 @@ export function parseActionDescription(action: string): { list: string | null; m
   return { list, max_rate_text, effective_date };
 }
 
-// Resolve project roots similar to other utils
-const candidateRoots = (): string[] => {
-  const roots: string[] = [];
-  try { roots.push(path.resolve(__dirname, '..', '..', '..', '..')); } catch {}
-  try { roots.push(path.resolve(__dirname, '..', '..', '..')); } catch {}
-  try { roots.push(process.cwd()); } catch {}
-  try { roots.push(path.resolve(process.cwd(), '..')); } catch {}
-  try { roots.push(path.resolve(process.cwd(), 'TariffHTSUSearcher')); } catch {}
-  return Array.from(new Set(roots));
-};
+const fileUrlDir = (() => {
+  try {
+    return path.dirname(fileURLToPath(import.meta.url));
+  } catch {
+    return process.cwd();
+  }
+})();
 
 const firstExistingPath = (...segments: string[]): string | null => {
-  for (const root of candidateRoots()) {
-    const p = path.join(root, ...segments);
+  const candidates: string[] = [];
+  const rel = path.join(...segments);
+
+  // From current working dir (Netlify root)
+  candidates.push(path.join(process.cwd(), rel));
+  // From dist (static assets)
+  candidates.push(path.join(process.cwd(), 'dist', rel));
+  // From public
+  candidates.push(path.join(process.cwd(), 'public', rel));
+  // From function bundle directory
+  candidates.push(path.join(fileUrlDir, rel));
+  candidates.push(path.join(fileUrlDir, '..', rel));
+  candidates.push(path.join(fileUrlDir, '..', '..', rel));
+
+  for (const p of candidates) {
     try {
       require('fs').accessSync(p);
-      return p;
+      return path.resolve(p);
     } catch {}
   }
   return null;
@@ -103,7 +114,9 @@ export async function loadUstr301(): Promise<UstrParsed[] | null> {
     firstExistingPath('assets', 'data', 'USTR_HTS_section301.json') ||
     firstExistingPath('assets', 'data', 'ustr_hts_section301.json') ||
     firstExistingPath('public', 'assets', 'data', 'USTR_HTS_section301.json') ||
-    firstExistingPath('public', 'assets', 'data', 'ustr_hts_section301.json');
+    firstExistingPath('public', 'assets', 'data', 'ustr_hts_section301.json') ||
+    firstExistingPath('dist', 'assets', 'data', 'USTR_HTS_section301.json') ||
+    firstExistingPath('dist', 'assets', 'data', 'ustr_hts_section301.json');
   if (!p) return null;
   try {
     const raw = await fs.readFile(p, 'utf8');
