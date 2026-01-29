@@ -152,7 +152,7 @@ const [pendingSuggested, setPendingSuggested] = React.useState<{ slug: string; t
     return cnd;
   }, [buildConditions, term]);
 
-  const triggerSearch = React.useCallback(() => {
+  const triggerSearch = React.useCallback((pageOverride?: number) => {
     const conditions = buildConditions();
     const facets = useAggregated ? selectedFacets.filter(Boolean) : [];
     initialSearchDone.current = true;
@@ -164,7 +164,7 @@ const [pendingSuggested, setPendingSuggested] = React.useState<{ slug: string; t
     setSearchArgs({
       term: term.trim(),
       perPage,
-      page,
+      page: typeof pageOverride === 'number' ? pageOverride : page,
       order,
       facets,
       conditions,
@@ -188,6 +188,12 @@ const [pendingSuggested, setPendingSuggested] = React.useState<{ slug: string; t
     setDebugInfo,
   ]);
 
+  // Use a ref to keep scheduleSearch stable and avoid triggering the condition effect on page change
+  const triggerSearchRef = React.useRef(triggerSearch);
+  React.useEffect(() => {
+    triggerSearchRef.current = triggerSearch;
+  }, [triggerSearch]);
+
   // Debounce helper for auto actions（非輸入框變動）
   const searchDebounceRef = React.useRef<number | undefined>(undefined);
   const scheduleSearch = React.useCallback((delay = 300) => {
@@ -195,8 +201,8 @@ const [pendingSuggested, setPendingSuggested] = React.useState<{ slug: string; t
       if (searchDebounceRef.current !== undefined) window.clearTimeout(searchDebounceRef.current);
     } catch {}
     // @ts-ignore
-    searchDebounceRef.current = window.setTimeout(() => { triggerSearch(); }, delay);
-  }, [triggerSearch]);
+    searchDebounceRef.current = window.setTimeout(() => { triggerSearchRef.current(); }, delay);
+  }, []);
   React.useEffect(() => () => {
     try { if (searchDebounceRef.current !== undefined) window.clearTimeout(searchDebounceRef.current); } catch {}
   }, []);
@@ -845,8 +851,16 @@ const [pendingSuggested, setPendingSuggested] = React.useState<{ slug: string; t
           page={page}
           totalPages={totalPages}
           totalCount={totalCount}
-          onPrevPage={() => { setPage((p: number) => Math.max(1, p - 1)); setTimeout(triggerSearch, 0); }}
-          onNextPage={() => { setPage((p: number) => p + 1); setTimeout(triggerSearch, 0); }}
+          onPrevPage={() => {
+            const p = Math.max(1, page - 1);
+            setPage(p);
+            triggerSearch(p);
+          }}
+          onNextPage={() => {
+            const p = page + 1;
+            setPage(p);
+            triggerSearch(p);
+          }}
           paginationDisabled={loading}
           debugMode={debugMode}
           onLoadSearchDetails={fetchSearchDetails}
