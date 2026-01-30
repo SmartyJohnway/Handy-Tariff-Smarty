@@ -140,9 +140,10 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
   const origin = new URL(event.rawUrl).origin;
   // Structured Request ID for correlation across logs and client diagnostics
   const requestId = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
-  const { hts_code, history_years = '5', countries, indicator = 'quantity', breakout, flow = 'cons', metric, metrics, commodity_select, granularity, ytd, commodities, compare, commodities_breakout } = event.queryStringParameters || {};
+  const { hts_code, history_years = '5', years: yearsParam, countries, indicator = 'quantity', breakout, flow = 'cons', metric, metrics, commodity_select, granularity, ytd, commodities, compare, commodities_breakout } = event.queryStringParameters || {};
   const compareEnabled = String(compare || '').toLowerCase() === 'true' || String(compare || '') === '1';
   const flowResolved: 'cons'|'gen'|'balance' = (flow === 'gen') ? 'gen' : ((flow === 'balance') ? 'balance' : 'cons');
+  const LATEST_DATAWEB_YEAR = 2025;
   
   // Allow fallback from hts_code (single) to commodities (multiple)
   const isCountryBreakout = String(breakout || '').toLowerCase() === 'true' || compareEnabled; // This refers to country breakout
@@ -187,7 +188,23 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
   try {
     // console.log('[get-trade-report] start', { requestId, hts_code, commodities, flow, metric, metrics, breakout, countries, history_years, ytd });
     const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: parseInt(history_years, 10) }, (_, i) => String(currentYear - i)).reverse();
+    const endYear = Math.min(currentYear, LATEST_DATAWEB_YEAR);
+    let years: string[] = [];
+    if (typeof yearsParam === 'string' && yearsParam.trim()) {
+      years = yearsParam
+        .split(',')
+        .map(s => s.trim())
+        .filter(s => /^(19|20)\d{2}$/.test(s))
+        .filter(s => Number(s) <= endYear);
+      if (years.length) {
+        years = Array.from(new Set(years)).sort();
+      }
+    }
+    if (!years.length) {
+      const span = Math.max(1, parseInt(history_years, 10) || 1);
+      const startYear = endYear - (span - 1);
+      years = Array.from({ length: Math.max(1, endYear - startYear + 1) }, (_, i) => String(startYear + i));
+    }
 
     const countryCodes = (countries || '')
       .split(',')
